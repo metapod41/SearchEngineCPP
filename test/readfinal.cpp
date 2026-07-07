@@ -24,6 +24,44 @@ class Document{
     }
 };
 
+class Tokenizer{
+    public:
+
+    vector<string> tokenize(const string& text){
+        vector<string> words;
+        string word;
+        stringstream ss(text);
+        while(ss>>word){
+            string lower = toLowerCase(word);
+            string punctuation = removePunctuation(lower);
+            if(!punctuation.empty()){
+            words.push_back(punctuation);
+            }
+        }
+        return words;
+    }
+
+    string toLowerCase(string word) const{
+        string res = "";
+        for(auto& w:word){
+            res+=tolower(w);
+        }
+        return res;
+    }
+
+    string removePunctuation(string word){
+        string res = "";
+        for(auto& c:word){
+            if(isalnum(c)){
+                res+=c;
+            }
+        }
+        return res;
+    }
+
+    
+};
+
 
 
 int main(){
@@ -49,9 +87,14 @@ int main(){
             }
         }
     }
-    for (const auto &doc : documents) {
-    cout << "ID: " << doc.getId() << '\n';
-    cout << "Filename: " << doc.getFilename() << '\n';
-    cout << "Content:\n" << doc.getContent() << '\n';
+    Tokenizer tokenizer;
+    for(auto &doc:documents){
+        vector<string> words = tokenizer.tokenize(doc.getContent());
+
+        for(auto& w:words){
+            cout<<w<<"\n";
+        }
+    }
 }
-}
+
+
