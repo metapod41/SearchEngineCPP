@@ -62,6 +62,18 @@ class Tokenizer{
     
 };
 
+class InvertedIndex{
+    public:
+
+    unordered_map<string , unordered_map<int , vector<int>>> index;
+
+    void addDocument(const Document& doc , const vector<string>& words){
+        for(int i = 0; i < words.size(); i++){
+            index[words[i]][doc.getId()].push_back(i);
+        }
+    }
+};
+
 
 
 int main(){
@@ -88,12 +100,26 @@ int main(){
         }
     }
     Tokenizer tokenizer;
+    InvertedIndex invertedIndex;
     for(auto &doc:documents){
         vector<string> words = tokenizer.tokenize(doc.getContent());
 
-        for(auto& w:words){
-            cout<<w<<"\n";
+        
+        invertedIndex.addDocument(doc , words);
+
+        
+    }
+    unordered_map<string , unordered_map<int , vector<int>>> index = invertedIndex.index;
+    for(auto& it:index){
+        cout<<it.first<<":\n";
+        for(auto& it2:it.second){
+            cout<<it2.first<<"->";
+            for(int i = 0; i < it2.second.size(); i++){
+                cout<<it2.second[i]<<" ";
+            }
+            cout<<endl;
         }
+        cout<<endl;
     }
 }
 
