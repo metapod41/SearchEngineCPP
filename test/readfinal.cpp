@@ -76,6 +76,7 @@ class InvertedIndex
 {
 public:
     unordered_map<string, unordered_map<int, vector<int>>> index;
+    unordered_map<string, int> docFrequency;
 
     void addDocument(const Document &doc, const vector<string> &words)
     {
@@ -93,6 +94,32 @@ public:
             res.push_back(it.first);
         }
         return res;
+    }
+
+    int getFrequency(string word, int docId)
+    {
+        if (index.find(word) != index.end())
+        {
+            if (index[word].find(docId) != index[word].end())
+            {
+                return index[word][docId].size();
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    void countFreq(vector<string> word)
+    {
+        unordered_set<string> st;
+        for (auto &w : word)
+        {
+            if (!st.count(w))
+            {
+                docFrequency[w]++;
+            }
+            st.insert(w);
+        }
     }
 
     vector<int> intersection(vector<int> &doc1, vector<int> &doc2)
@@ -133,14 +160,16 @@ public:
         return res;
     }
 
-    vector<int> notFind(const vector<int> &doc1,const vector<Document> &documents){
-    
+    vector<int> notFind(const vector<int> &doc1, const vector<Document> &documents)
+    {
+
         unordered_set<int> st(doc1.begin(), doc1.end());
 
         vector<int> res;
 
-        for (const auto &doc : documents){
-        
+        for (const auto &doc : documents)
+        {
+
             if (!st.count(doc.getId()))
                 res.push_back(doc.getId());
         }
@@ -149,7 +178,21 @@ public:
     }
 };
 
-void queryFind(string word, InvertedIndex &invertedIndex , const vector<Document>& documents)
+double getTF(int Termfrequency, int docSize)
+{
+    return 1.0 * Termfrequency / docSize;
+}
+
+double getIDF(int documentFrequency, int totalDoc)
+{
+    if (documentFrequency == 0)
+    {
+        return 0;
+    }
+    return 1.0 * log(1.0 * totalDoc / documentFrequency);
+}
+
+void queryFind(string word, InvertedIndex &invertedIndex, const vector<Document> &documents, unordered_map<int, int> &docSize)
 {
     Tokenizer tokenizer;
     vector<string> actualWords;
@@ -188,11 +231,42 @@ void queryFind(string word, InvertedIndex &invertedIndex , const vector<Document
         {
             intersectionDoc = invertedIndex.intersection(intersectionDoc, docs[i]);
         }
-        for (int i = 0; i < intersectionDoc.size(); i++)
+        vector<pair<double, int>> rankedDocs;
+
+        for (auto docId : intersectionDoc)
         {
-            cout << intersectionDoc[i] << " ";
+            double score = 0;
+
+            for (auto &w : actualWords)
+            {
+                double tf = getTF(
+                    invertedIndex.getFrequency(w, docId),
+                    docSize[docId]);
+
+                double idf = getIDF(
+                    invertedIndex.docFrequency[w],
+                    documents.size());
+
+                score += tf * idf;
+            }
+
+            rankedDocs.push_back({score, docId});
         }
-        cout << "\n";
+
+        sort(rankedDocs.begin(), rankedDocs.end(),
+             [](auto &a, auto &b)
+             {
+                 return a.first > b.first;
+             });
+
+        cout << "Ranked Results\n";
+
+        for (auto &p : rankedDocs)
+        {
+            cout << "Doc " << p.second
+                 << " Score : "
+                 << p.first << "\n";
+        }
     }
     else if (orSearch)
     {
@@ -206,11 +280,42 @@ void queryFind(string word, InvertedIndex &invertedIndex , const vector<Document
             orDoc = invertedIndex.doUnion(orDoc, docs[i]);
         }
 
-        for (int i = 0; i < orDoc.size(); i++)
+        vector<pair<double, int>> rankedDocs;
+
+        for (auto docId : orDoc)
         {
-            cout << orDoc[i] << " ";
+            double score = 0;
+
+            for (auto &w : actualWords)
+            {
+                double tf = getTF(
+                    invertedIndex.getFrequency(w, docId),
+                    docSize[docId]);
+
+                double idf = getIDF(
+                    invertedIndex.docFrequency[w],
+                    documents.size());
+
+                score += tf * idf;
+            }
+
+            rankedDocs.push_back({score, docId});
         }
-        cout << "\n";
+
+        sort(rankedDocs.begin(), rankedDocs.end(),
+             [](auto &a, auto &b)
+             {
+                 return a.first > b.first;
+             });
+
+        cout << "Ranked Results\n";
+
+        for (auto &p : rankedDocs)
+        {
+            cout << "Doc " << p.second
+                 << " Score : "
+                 << p.first << "\n";
+        }
     }
     else
     {
@@ -225,6 +330,8 @@ void queryFind(string word, InvertedIndex &invertedIndex , const vector<Document
         cout << "\n";
     }
 }
+
+
 
 int main()
 {
@@ -256,16 +363,22 @@ int main()
     }
     Tokenizer tokenizer;
     InvertedIndex invertedIndex;
+    unordered_map<int, int> docSize;
     for (auto &doc : documents)
     {
         vector<string> words = tokenizer.tokenize(doc.getContent());
 
+        docSize[doc.getId()] = words.size();
+
         invertedIndex.addDocument(doc, words);
+
+        invertedIndex.countFreq(words);
     }
+
     unordered_map<string, unordered_map<int, vector<int>>> index = invertedIndex.index;
     cout << "Enter words to search: ";
     string query;
     getline(cin, query);
     cout << "The words \" " << query << " \"" << " is found in : " << endl;
-    queryFind(query, invertedIndex , documents);
+    queryFind(query, invertedIndex, documents, docSize);
 }
