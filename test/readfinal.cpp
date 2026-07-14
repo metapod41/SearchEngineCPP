@@ -33,18 +33,89 @@ class Tokenizer
 public:
     vector<string> tokenize(const string &text)
     {
-        vector<string> words;
-        string word;
-        stringstream ss(text);
-        while (ss >> word)
+         vector<string> words;
+        string word = "";
+        bool inQuotes = false;
+
+        for (char c : text)
         {
-            string lower = toLowerCase(word);
-            string punctuation = removePunctuation(lower);
-            if (!punctuation.empty())
+            
+            if (inQuotes)
             {
-                words.push_back(punctuation);
+                if (c == '"')
+                {
+                    inQuotes = false;
+
+                    if (!word.empty())
+                    {
+                        words.push_back(toLowerCase(word));
+                        word = "";
+                    }
+
+                    continue;
+                }
+
+                word += tolower(c);
+                continue;
+            }
+
+            // Opening quote
+            if (c == '"')
+            {
+                if (!word.empty())
+                {
+                    words.push_back(word);
+                    word = "";
+                }
+
+                inQuotes = true;
+                continue;
+            }
+
+            if (c == ' ')
+            {
+                if (!word.empty())
+                {
+                    words.push_back(word);
+                    word = "";
+                }
+            }
+            else if (isalnum(c))
+            {
+                word += tolower(c);
+            }
+            else if (c == '(')
+            {
+                if (!word.empty())
+                {
+                    words.push_back(word);
+                    word = "";
+                }
+
+                words.push_back("(");
+            }
+            else if (c == ')')
+            {
+                if (!word.empty())
+                {
+                    words.push_back(word);
+                    word = "";
+                }
+
+                words.push_back(")");
+            }
+            else
+            {
+                
+                continue;
             }
         }
+
+        if (!word.empty())
+        {
+            words.push_back(word);
+        }
+
         return words;
     }
 
@@ -331,7 +402,149 @@ void queryFind(string word, InvertedIndex &invertedIndex, const vector<Document>
     }
 }
 
+class QueryNode{
+    public:
 
+    string value;
+    QueryNode *left;
+    QueryNode *right;
+
+    QueryNode(string value){
+        this->value = value;
+        left = nullptr;
+        right = nullptr;
+    }
+
+    
+};
+
+int precedence(string a)
+{
+    if (a == "or") return 1;
+    if (a == "and") return 2;
+    if (a == "not") return 3;
+    return -1;
+}
+
+bool isOperand(string a)
+{
+    return !(a == "and" || a == "or" || a == "not" || a == "(" || a == ")");
+}
+
+QueryNode* buildTree(vector<string> tokens)
+{
+    stack<QueryNode*> operandStack;
+    stack<string> operatorStack;
+
+    for (auto &token : tokens)
+    {
+        if (isOperand(token))
+        {
+            QueryNode *newNode = new QueryNode(token);
+            operandStack.push(newNode);
+        }
+
+        else if (token == "(")
+        {
+            operatorStack.push(token);
+        }
+
+        else if (token == ")")
+        {
+            while (!operatorStack.empty() && operatorStack.top() != "(")
+            {
+                string op = operatorStack.top();
+                operatorStack.pop();
+
+                QueryNode *node2 = operandStack.top();
+                operandStack.pop();
+
+                QueryNode *node1 = operandStack.top();
+                operandStack.pop();
+
+                QueryNode *root = new QueryNode(op);
+                root->left = node1;
+                root->right = node2;
+
+                operandStack.push(root);
+            }
+
+            if (!operatorStack.empty())
+                operatorStack.pop();   
+        }
+
+        else
+        {
+            while (!operatorStack.empty() &&
+                   operatorStack.top() != "(" &&
+                   precedence(operatorStack.top()) >= precedence(token))
+            {
+                string op = operatorStack.top();
+                operatorStack.pop();
+
+                QueryNode *node2 = operandStack.top();
+                operandStack.pop();
+
+                QueryNode *node1 = operandStack.top();
+                operandStack.pop();
+
+                QueryNode *root = new QueryNode(op);
+                root->left = node1;
+                root->right = node2;
+
+                operandStack.push(root);
+            }
+
+            operatorStack.push(token);
+        }
+    }
+
+    while (!operatorStack.empty())
+    {
+        string op = operatorStack.top();
+        operatorStack.pop();
+
+        QueryNode *node2 = operandStack.top();
+        operandStack.pop();
+
+        QueryNode *node1 = operandStack.top();
+        operandStack.pop();
+
+        QueryNode *root = new QueryNode(op);
+        root->left = node1;
+        root->right = node2;
+
+        operandStack.push(root);
+    }
+
+    return operandStack.top();
+}
+
+void printTree(QueryNode *root){
+    if(root==nullptr){
+        return;
+    }
+    cout<<root->value<<endl;
+    printTree(root->left);
+    printTree(root->right);
+}
+
+vector<int> evaluate(QueryNode *root, InvertedIndex &index)
+{
+    if (root == nullptr)
+        return {};
+
+    if (isOperand(root->value))
+        return index.getDoc(root->value);
+
+    vector<int> left = evaluate(root->left, index);
+    vector<int> right = evaluate(root->right, index);
+
+    if (root->value == "and")
+        return index.intersection(left, right);
+    else
+        return index.doUnion(left, right);   
+}
 
 int main()
 {
@@ -374,11 +587,20 @@ int main()
 
         invertedIndex.countFreq(words);
     }
+    // cout << "Enter words to search: ";
+    // string query;
+    // getline(cin, query);
+    // cout << "The words \" " << query << " \"" << " is found in : " << endl;
+    // queryFind(query, invertedIndex, documents, docSize);
 
-    unordered_map<string, unordered_map<int, vector<int>>> index = invertedIndex.index;
-    cout << "Enter words to search: ";
-    string query;
-    getline(cin, query);
-    cout << "The words \" " << query << " \"" << " is found in : " << endl;
-    queryFind(query, invertedIndex, documents, docSize);
+    string st = "apple AND banana AND fruit OR honey";
+
+    
+
+    Tokenizer tok;
+    vector<string> tokens = tok.tokenize(st);
+
+    QueryNode *root = buildTree(tokens);
+    printTree(root);
+    
 }
