@@ -1,0 +1,9 @@
+Deep neural network models are widely used in computer vision.
+
+A deep neural network consists of many hidden layers.
+
+Machine learning includes supervised learning and reinforcement learning.
+
+Data science often uses Python together with machine learning.
+
+Optimization techniques improve neural network performance.

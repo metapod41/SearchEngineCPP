@@ -33,13 +33,14 @@ class Tokenizer
 public:
     vector<string> tokenize(const string &text)
     {
-         vector<string> words;
+        vector<string> words;
         string word = "";
         bool inQuotes = false;
 
-        for (char c : text)
+        for (char ch : text)
         {
-            
+            unsigned char c = static_cast<unsigned char>(ch);
+
             if (inQuotes)
             {
                 if (c == '"')
@@ -49,96 +50,84 @@ public:
                     if (!word.empty())
                     {
                         words.push_back(toLowerCase(word));
-                        word = "";
+                        word.clear();
                     }
 
                     continue;
                 }
 
-                word += tolower(c);
+                word += (char)tolower(c);
                 continue;
             }
 
-            // Opening quote
             if (c == '"')
             {
                 if (!word.empty())
                 {
-                    words.push_back(word);
-                    word = "";
+                    words.push_back(toLowerCase(word));
+                    word.clear();
                 }
 
                 inQuotes = true;
                 continue;
             }
 
-            if (c == ' ')
+            if (isalnum(c))
+            {
+                word += (char)tolower(c);
+            }
+            else if (isspace(c))
             {
                 if (!word.empty())
                 {
-                    words.push_back(word);
-                    word = "";
+                    words.push_back(toLowerCase(word));
+                    word.clear();
                 }
             }
-            else if (isalnum(c))
-            {
-                word += tolower(c);
-            }
-            else if (c == '(')
+            else if (c == '(' || c == ')')
             {
                 if (!word.empty())
                 {
-                    words.push_back(word);
-                    word = "";
-                }
-
-                words.push_back("(");
-            }
-            else if (c == ')')
-            {
-                if (!word.empty())
-                {
-                    words.push_back(word);
-                    word = "";
+                    words.push_back(toLowerCase(word));
+                    word.clear();
                 }
 
-                words.push_back(")");
+                words.push_back(string(1, c));
             }
             else
             {
-                
-                continue;
+                if (!word.empty())
+                {
+                    words.push_back(toLowerCase(word));
+                    word.clear();
+                }
             }
         }
 
         if (!word.empty())
-        {
-            words.push_back(word);
-        }
+            words.push_back(toLowerCase(word));
 
         return words;
     }
 
     string toLowerCase(string word) const
     {
-        string res = "";
-        for (auto &w : word)
-        {
-            res += tolower(w);
-        }
-        return res;
+        for (char &c : word)
+            c = (char)tolower((unsigned char)c);
+
+        return word;
     }
 
     string removePunctuation(string word)
     {
-        string res = "";
-        for (auto &c : word)
+        string res;
+
+        for (char c : word)
         {
-            if (isalnum(c))
-            {
-                res += c;
-            }
+            if (isalnum((unsigned char)c))
+                res += (char)tolower((unsigned char)c);
         }
+
         return res;
     }
 };
@@ -151,101 +140,143 @@ public:
 
     void addDocument(const Document &doc, const vector<string> &words)
     {
-        for (int i = 0; i < words.size(); i++)
+        for (int i = 0; i < (int)words.size(); i++)
         {
             index[words[i]][doc.getId()].push_back(i);
         }
     }
 
-    vector<int> getDoc(string word)
+    vector<int> getDoc(const string &word)
     {
-        vector<int> res;
-        for (auto &it : index[word])
-        {
-            res.push_back(it.first);
-        }
-        return res;
+        vector<int> docs;
+
+        auto it = index.find(word);
+        if (it == index.end())
+            return docs;
+
+        for (auto &doc : it->second)
+            docs.push_back(doc.first);
+
+        sort(docs.begin(), docs.end());
+
+        return docs;
     }
 
-    int getFrequency(string word, int docId)
+    int getFrequency(const string &word, int docId)
     {
-        if (index.find(word) != index.end())
-        {
-            if (index[word].find(docId) != index[word].end())
-            {
-                return index[word][docId].size();
-            }
+        auto it = index.find(word);
+
+        if (it == index.end())
             return 0;
-        }
-        return 0;
+
+        auto jt = it->second.find(docId);
+
+        if (jt == it->second.end())
+            return 0;
+
+        return jt->second.size();
     }
 
-    void countFreq(vector<string> word)
+    void countFreq(const vector<string> &words)
     {
-        unordered_set<string> st;
-        for (auto &w : word)
-        {
-            if (!st.count(w))
-            {
-                docFrequency[w]++;
-            }
-            st.insert(w);
-        }
-    }
+        unordered_set<string> visited;
 
-    vector<int> intersection(vector<int> &doc1, vector<int> &doc2)
-    {
-        unordered_set<int> st;
-        vector<int> res;
-        for (auto &d : doc1)
+        for (auto &word : words)
         {
-            st.insert(d);
-        }
-        for (auto &d : doc2)
-        {
-            if (st.count(d))
+            if (!visited.count(word))
             {
-                res.push_back(d);
-                st.erase(d);
+                docFrequency[word]++;
+                visited.insert(word);
             }
         }
-        return res;
     }
 
-    vector<int> doUnion(vector<int> &doc1, vector<int> &doc2)
+    vector<int> intersection(vector<int> a, vector<int> b)
     {
-        unordered_set<int> st;
-        vector<int> res;
-        for (auto &w : doc1)
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
+
+        vector<int> ans;
+
+        int i = 0;
+        int j = 0;
+
+        while (i < (int)a.size() && j < (int)b.size())
         {
-            st.insert(w);
+            if (a[i] == b[j])
+            {
+                ans.push_back(a[i]);
+                i++;
+                j++;
+            }
+            else if (a[i] < b[j])
+            {
+                i++;
+            }
+            else
+            {
+                j++;
+            }
         }
-        for (auto &w : doc2)
-        {
-            st.insert(w);
-        }
-        for (auto &w : st)
-        {
-            res.push_back(w);
-        }
-        return res;
+
+        return ans;
     }
 
-    vector<int> notFind(const vector<int> &doc1, const vector<Document> &documents)
+    vector<int> doUnion(vector<int> a, vector<int> b)
     {
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
 
-        unordered_set<int> st(doc1.begin(), doc1.end());
+        vector<int> ans;
 
-        vector<int> res;
+        int i = 0;
+        int j = 0;
 
-        for (const auto &doc : documents)
+        while (i < (int)a.size() && j < (int)b.size())
         {
-
-            if (!st.count(doc.getId()))
-                res.push_back(doc.getId());
+            if (a[i] == b[j])
+            {
+                ans.push_back(a[i]);
+                i++;
+                j++;
+            }
+            else if (a[i] < b[j])
+            {
+                ans.push_back(a[i]);
+                i++;
+            }
+            else
+            {
+                ans.push_back(b[j]);
+                j++;
+            }
         }
 
-        return res;
+        while (i < (int)a.size())
+            ans.push_back(a[i++]);
+
+        while (j < (int)b.size())
+            ans.push_back(b[j++]);
+
+        ans.erase(unique(ans.begin(), ans.end()), ans.end());
+
+        return ans;
+    }
+
+    vector<int> notFind(const vector<int> &docs,
+                        const vector<Document> &documents)
+    {
+        unordered_set<int> present(docs.begin(), docs.end());
+
+        vector<int> ans;
+
+        for (auto &doc : documents)
+        {
+            if (!present.count(doc.getId()))
+                ans.push_back(doc.getId());
+        }
+
+        return ans;
     }
 };
 
@@ -261,145 +292,6 @@ double getIDF(int documentFrequency, int totalDoc)
         return 0;
     }
     return 1.0 * log(1.0 * totalDoc / documentFrequency);
-}
-
-void queryFind(string word, InvertedIndex &invertedIndex, const vector<Document> &documents, unordered_map<int, int> &docSize)
-{
-    Tokenizer tokenizer;
-    vector<string> actualWords;
-    vector<string> tokenisedString = tokenizer.tokenize(word);
-    bool andSearch = true, orSearch = false, notSearch = false;
-    for (auto &w : tokenisedString)
-    {
-        if (w != "and" && w != "or" && w != "not")
-        {
-            actualWords.push_back(w);
-        }
-        else if (w == "and")
-        {
-            andSearch = true;
-        }
-        else if (w == "or")
-        {
-            orSearch = true;
-            andSearch = false;
-        }
-        else
-        {
-            notSearch = true;
-            andSearch = false;
-        }
-    }
-    vector<vector<int>> docs;
-    if (andSearch)
-    {
-        for (auto &word : actualWords)
-        {
-            docs.push_back(invertedIndex.getDoc(word));
-        }
-        vector<int> intersectionDoc = docs[0];
-        for (int i = 1; i < docs.size(); i++)
-        {
-            intersectionDoc = invertedIndex.intersection(intersectionDoc, docs[i]);
-        }
-        vector<pair<double, int>> rankedDocs;
-
-        for (auto docId : intersectionDoc)
-        {
-            double score = 0;
-
-            for (auto &w : actualWords)
-            {
-                double tf = getTF(
-                    invertedIndex.getFrequency(w, docId),
-                    docSize[docId]);
-
-                double idf = getIDF(
-                    invertedIndex.docFrequency[w],
-                    documents.size());
-
-                score += tf * idf;
-            }
-
-            rankedDocs.push_back({score, docId});
-        }
-
-        sort(rankedDocs.begin(), rankedDocs.end(),
-             [](auto &a, auto &b)
-             {
-                 return a.first > b.first;
-             });
-
-        cout << "Ranked Results\n";
-
-        for (auto &p : rankedDocs)
-        {
-            cout << "Doc " << p.second
-                 << " Score : "
-                 << p.first << "\n";
-        }
-    }
-    else if (orSearch)
-    {
-        for (auto &word : actualWords)
-        {
-            docs.push_back(invertedIndex.getDoc(word));
-        }
-        vector<int> orDoc = docs[0];
-        for (int i = 1; i < docs.size(); i++)
-        {
-            orDoc = invertedIndex.doUnion(orDoc, docs[i]);
-        }
-
-        vector<pair<double, int>> rankedDocs;
-
-        for (auto docId : orDoc)
-        {
-            double score = 0;
-
-            for (auto &w : actualWords)
-            {
-                double tf = getTF(
-                    invertedIndex.getFrequency(w, docId),
-                    docSize[docId]);
-
-                double idf = getIDF(
-                    invertedIndex.docFrequency[w],
-                    documents.size());
-
-                score += tf * idf;
-            }
-
-            rankedDocs.push_back({score, docId});
-        }
-
-        sort(rankedDocs.begin(), rankedDocs.end(),
-             [](auto &a, auto &b)
-             {
-                 return a.first > b.first;
-             });
-
-        cout << "Ranked Results\n";
-
-        for (auto &p : rankedDocs)
-        {
-            cout << "Doc " << p.second
-                 << " Score : "
-                 << p.first << "\n";
-        }
-    }
-    else
-    {
-        vector<int> doc1;
-        doc1 = invertedIndex.getDoc(actualWords[0]);
-
-        vector<int> res = invertedIndex.notFind(doc1, documents);
-        for (int i = 0; i < res.size(); i++)
-        {
-            cout << res[i] << " ";
-        }
-        cout << "\n";
-    }
 }
 
 class QueryNode{
@@ -418,81 +310,78 @@ class QueryNode{
     
 };
 
-int precedence(string a)
+int precedence(string op)
 {
-    if (a == "or") return 1;
-    if (a == "and") return 2;
-    if (a == "not") return 3;
+    if (op == "or")
+        return 1;
+
+    if (op == "and")
+        return 2;
+
     return -1;
 }
 
-bool isOperand(string a)
+bool isOperand(string token)
 {
-    return !(a == "and" || a == "or" || a == "not" || a == "(" || a == ")");
+    return token != "and" &&
+           token != "or" &&
+           token != "(" &&
+           token != ")";
 }
 
-QueryNode* buildTree(vector<string> tokens)
+QueryNode *buildTree(vector<string> tokens)
 {
-    stack<QueryNode*> operandStack;
+    stack<QueryNode *> operandStack;
     stack<string> operatorStack;
+
+    auto makeNode = [&]()
+    {
+        if (operandStack.size() < 2 || operatorStack.empty())
+            return;
+
+        string op = operatorStack.top();
+        operatorStack.pop();
+
+        QueryNode *right = operandStack.top();
+        operandStack.pop();
+
+        QueryNode *left = operandStack.top();
+        operandStack.pop();
+
+        QueryNode *root = new QueryNode(op);
+        root->left = left;
+        root->right = right;
+
+        operandStack.push(root);
+    };
 
     for (auto &token : tokens)
     {
         if (isOperand(token))
         {
-            QueryNode *newNode = new QueryNode(token);
-            operandStack.push(newNode);
+            operandStack.push(new QueryNode(token));
         }
-
         else if (token == "(")
         {
             operatorStack.push(token);
         }
-
         else if (token == ")")
         {
             while (!operatorStack.empty() && operatorStack.top() != "(")
             {
-                string op = operatorStack.top();
-                operatorStack.pop();
-
-                QueryNode *node2 = operandStack.top();
-                operandStack.pop();
-
-                QueryNode *node1 = operandStack.top();
-                operandStack.pop();
-
-                QueryNode *root = new QueryNode(op);
-                root->left = node1;
-                root->right = node2;
-
-                operandStack.push(root);
+                makeNode();
             }
 
             if (!operatorStack.empty())
-                operatorStack.pop();   
+                operatorStack.pop();
         }
-
         else
         {
             while (!operatorStack.empty() &&
                    operatorStack.top() != "(" &&
                    precedence(operatorStack.top()) >= precedence(token))
             {
-                string op = operatorStack.top();
-                operatorStack.pop();
-
-                QueryNode *node2 = operandStack.top();
-                operandStack.pop();
-
-                QueryNode *node1 = operandStack.top();
-                operandStack.pop();
-
-                QueryNode *root = new QueryNode(op);
-                root->left = node1;
-                root->right = node2;
-
-                operandStack.push(root);
+                makeNode();
             }
 
             operatorStack.push(token);
@@ -501,21 +390,11 @@ QueryNode* buildTree(vector<string> tokens)
 
     while (!operatorStack.empty())
     {
-        string op = operatorStack.top();
-        operatorStack.pop();
-
-        QueryNode *node2 = operandStack.top();
-        operandStack.pop();
-
-        QueryNode *node1 = operandStack.top();
-        operandStack.pop();
-
-        QueryNode *root = new QueryNode(op);
-        root->left = node1;
-        root->right = node2;
-
-        operandStack.push(root);
+        makeNode();
     }
+
+    if (operandStack.empty())
+        return nullptr;
 
     return operandStack.top();
 }
@@ -529,21 +408,87 @@ void printTree(QueryNode *root){
     printTree(root->right);
 }
 
-vector<int> evaluate(QueryNode *root, InvertedIndex &index)
+vector<int> phraseSearch(string query,Tokenizer &tokenizer,InvertedIndex &invertedIndex)
+{
+    vector<string> tokens = tokenizer.tokenize(query);
+
+    if (tokens.empty())
+        return {};
+
+    vector<int> docs = invertedIndex.getDoc(tokens[0]);
+
+    for (int i = 1; i < (int)tokens.size(); i++)
+    {
+        vector<int> currentDocs = invertedIndex.getDoc(tokens[i]);
+        docs = invertedIndex.intersection(docs, currentDocs);
+
+        if (docs.empty())
+            return {};
+    }
+
+    vector<int> answer;
+
+    for (int doc : docs)
+    {
+        const vector<int> &firstPos =invertedIndex.index[tokens[0]][doc];
+
+        bool found = false;
+
+        for (int start : firstPos)
+        {
+            bool ok = true;
+
+            for (int i = 1; i < (int)tokens.size(); i++)
+            {
+                const vector<int> &positions =
+                    invertedIndex.index[tokens[i]][doc];
+
+                if (find(positions.begin(),positions.end(),start + i) == positions.end())
+                {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (ok)
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (found)
+            answer.push_back(doc);
+    }
+
+    return answer;
+}
+
+vector<int> evaluate(QueryNode *root,InvertedIndex &index,Tokenizer &tokenizer)
 {
     if (root == nullptr)
         return {};
 
     if (isOperand(root->value))
-        return index.getDoc(root->value);
+    {
+        
+        if (root->value.find(' ') != string::npos)
+            return phraseSearch(root->value, tokenizer, index);
 
-    vector<int> left = evaluate(root->left, index);
-    vector<int> right = evaluate(root->right, index);
+        
+        return index.getDoc(root->value);
+    }
+
+    vector<int> left = evaluate(root->left, index, tokenizer);
+    vector<int> right = evaluate(root->right, index, tokenizer);
 
     if (root->value == "and")
         return index.intersection(left, right);
-    else
-        return index.doUnion(left, right);   
+
+    if (root->value == "or")
+        return index.doUnion(left, right);
+
+    return {};
 }
 
 int main()
@@ -574,6 +519,11 @@ int main()
             }
         }
     }
+
+    for (auto &doc : documents)
+{
+    cout << doc.getId() << " -> " << doc.getFilename() << endl;
+}
     Tokenizer tokenizer;
     InvertedIndex invertedIndex;
     unordered_map<int, int> docSize;
@@ -587,20 +537,50 @@ int main()
 
         invertedIndex.countFreq(words);
     }
-    // cout << "Enter words to search: ";
-    // string query;
-    // getline(cin, query);
-    // cout << "The words \" " << query << " \"" << " is found in : " << endl;
-    // queryFind(query, invertedIndex, documents, docSize);
-
-    string st = "apple AND banana AND fruit OR honey";
-
+    cout << "Enter words to search: ";
+    string query;
+    getline(cin, query);
+    cout << "The words \" " << query << " \"" << " is found in : " << endl;
     
-
-    Tokenizer tok;
-    vector<string> tokens = tok.tokenize(st);
+    vector<string> tokens = tokenizer.tokenize(query);
+    // for (auto &t : tokens){
+    // cout << "[" << t << "] ";
+    //  cout << endl;}
 
     QueryNode *root = buildTree(tokens);
-    printTree(root);
+    vector<int> ans = evaluate(root, invertedIndex, tokenizer);
+
+    vector<pair<double,int>> ranked;
+
+    for(int docId : ans)
+    {
+        double score = 0;
+
+        for(auto &token : tokens)
+        {
+            if(token=="and" || token=="or" ||
+            token=="(" || token==")")
+                continue;
+
+            score += getTF(invertedIndex.getFrequency(token, docId),docSize[docId])*getIDF(invertedIndex.docFrequency[token],documents.size());
+        }
+
+        ranked.push_back({score, docId});
+    }
+
+    sort(ranked.begin(), ranked.end(),
+    [](auto &a, auto &b)
+    {
+        return a.first > b.first;
+    });
+
+    cout << "\nRanked Results\n\n";
+
+    for(auto &x : ranked)
+    {
+        cout << "Doc "<< x.second<< " Score : "<< x.first<< endl;
+    }
+
+
     
 }

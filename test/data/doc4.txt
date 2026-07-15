@@ -1,0 +1,13 @@
+The quick brown fox jumps over the lazy dog.
+
+Search engines build inverted indexes.
+
+Modern search engines support boolean queries.
+
+Machine learning powers many search engines.
+
+The phrase machine learning appears exactly once in this document.
+
+Deep neural network appears as a complete phrase here.
+
+Machine learning improves search relevance.

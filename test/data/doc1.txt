@@ -1,0 +1,9 @@
+Machine learning is one of the most popular fields in artificial intelligence.
+
+Machine learning algorithms learn from data.
+
+Deep learning is a subset of machine learning.
+
+Python is widely used for machine learning and data science.
+
+Neural networks are the backbone of deep learning.
