@@ -31,6 +31,7 @@ public:
 class Tokenizer
 {
 public:
+
     vector<string> tokenize(const string &text)
     {
         vector<string> words;
@@ -491,6 +492,71 @@ vector<int> evaluate(QueryNode *root,InvertedIndex &index,Tokenizer &tokenizer)
     return {};
 }
 
+class SnippetGenerator{
+    public:
+    int findFirstOccurrence(const vector<string> &tokens,int docId,InvertedIndex &index)
+    {
+    int first = INT_MAX;
+
+    for (const string &token : tokens)
+    {
+        if (token == "and" ||
+            token == "or" ||
+            token == "(" ||
+            token == ")")
+            continue;
+
+        auto wordIt = index.index.find(token);
+
+        if (wordIt == index.index.end())
+            continue;
+
+        auto docIt = wordIt->second.find(docId);
+
+        if (docIt == wordIt->second.end())
+            continue;
+
+        if (!docIt->second.empty())
+            first = min(first, docIt->second[0]);
+    }
+
+    return (first == INT_MAX ? -1 : first);
+}
+
+    vector<string> extractSnippet(int position , const vector<string>& words){
+        vector<string> res;
+        int n = words.size();
+        int start = max(0 , position-5);
+        int end = min(n-1 , position+5);
+        for(int i = start; i <= end; i++){
+            res.push_back(words[i]);
+            res.push_back(" ");
+        }
+        return res;
+    }
+
+    string highlightSnippet(vector<string>& snippet , const vector<string>& queryTokens){
+        unordered_set<string> st;
+        for(auto& word:queryTokens){
+            if(word=="and"||word=="or"||word==")"||word=="("){
+                continue;
+            }
+            st.insert(word);
+        }
+        for(auto& word:snippet){
+            if(st.count(word)){
+                word = "**"+word+"**";
+            }
+        }
+        string res = "";
+        for(auto&word:snippet){
+            res+=word;
+            res+=" ";
+        }
+        return res;
+    }
+};
+
 int main()
 {
     vector<Document> documents;
@@ -503,7 +569,6 @@ int main()
             ifstream file(entry.path());
             if (file)
             {
-                cout << "opened!!\n";
                 string content;
                 string line;
 
@@ -520,16 +585,14 @@ int main()
         }
     }
 
-    for (auto &doc : documents)
-{
-    cout << doc.getId() << " -> " << doc.getFilename() << endl;
-}
     Tokenizer tokenizer;
     InvertedIndex invertedIndex;
     unordered_map<int, int> docSize;
+    unordered_map<int , vector<string>> documentWords;
     for (auto &doc : documents)
     {
         vector<string> words = tokenizer.tokenize(doc.getContent());
+        documentWords[doc.getId()] = words;
 
         docSize[doc.getId()] = words.size();
 
@@ -543,6 +606,7 @@ int main()
     cout << "The words \" " << query << " \"" << " is found in : " << endl;
     
     vector<string> tokens = tokenizer.tokenize(query);
+    
     // for (auto &t : tokens){
     // cout << "[" << t << "] ";
     //  cout << endl;}
@@ -555,6 +619,7 @@ int main()
     for(int docId : ans)
     {
         double score = 0;
+        unordered_set<string> uniqueterms;
 
         for(auto &token : tokens)
         {
@@ -562,7 +627,11 @@ int main()
             token=="(" || token==")")
                 continue;
 
-            score += getTF(invertedIndex.getFrequency(token, docId),docSize[docId])*getIDF(invertedIndex.docFrequency[token],documents.size());
+            uniqueterms.insert(token);
+        }
+
+        for(auto& term:uniqueterms){
+            score += getTF(invertedIndex.getFrequency(term, docId),docSize[docId])*getIDF(invertedIndex.docFrequency[term],documents.size());
         }
 
         ranked.push_back({score, docId});
@@ -581,6 +650,13 @@ int main()
         cout << "Doc "<< x.second<< " Score : "<< x.first<< endl;
     }
 
+    cout<<endl<<endl;
 
-    
+    SnippetGenerator snippet;
+    for(auto& doc:ranked){
+        int first = snippet.findFirstOccurrence(tokens , doc.second , invertedIndex);
+        vector<string> res = snippet.extractSnippet(first , documentWords[doc.second]);
+        string output = snippet.highlightSnippet(res , tokens);
+        cout<<"document "<<doc.second<<"-> "<<output<<endl;
+    }    
 }
