@@ -557,6 +557,93 @@ class SnippetGenerator{
     }
 };
 
+class TrieNode{
+    public:
+    unordered_map<char , TrieNode*> children;
+    bool isWord;
+
+    TrieNode(){
+        isWord = false;
+    }
+};
+
+class Trie{
+    public:
+    TrieNode* root;
+    Trie(){
+        root = new TrieNode();
+    }
+
+    void insert(const string& word){
+        TrieNode* current = root;
+
+        for(char ch:word){
+            if(current->children.find(ch)==current->children.end()){
+                current->children[ch] = new TrieNode();
+            }
+            current = current->children[ch];
+        }
+        current->isWord = true;
+    }
+
+    bool search(const string& word){
+        TrieNode* current = root;
+        for(auto& ch:word){
+            if(current->children.find(ch)==current->children.end()){
+                return false;
+            }
+            current = current->children[ch];
+        }
+        return current->isWord;
+    }
+
+    TrieNode* findPrefix(const string& prefix){
+        TrieNode* current = root;
+        for(auto& ch:prefix){
+            if(current->children.find(ch)==current->children.end()){
+                return nullptr;
+            }
+            current = current->children[ch];
+        }
+        return current;
+    }
+
+    void dfs(TrieNode* node , string& currentWord , vector<string>& suggestions , int k){
+        if(suggestions.size()==k){
+            return;
+        }
+        if(node->isWord){
+            suggestions.push_back(currentWord);
+            if(suggestions.size()==k){
+                return;
+            }
+        }
+        for(auto& child:node->children){
+            currentWord.push_back(child.first);
+
+            dfs(child.second , currentWord , suggestions , k);
+
+            currentWord.pop_back();
+
+            if(suggestions.size()==k){
+                return;
+            }
+        }
+    }
+
+    vector<string> autocomplete(const string& prefix , int k = 5){
+        vector<string> suggestions;
+        TrieNode* node = findPrefix(prefix);
+        if(node==nullptr){
+            return suggestions;
+        }
+
+        string currentWord = prefix;
+        dfs(node , currentWord , suggestions , k);
+        return suggestions; 
+    }
+};
+
 int main()
 {
     vector<Document> documents;
@@ -587,6 +674,7 @@ int main()
 
     Tokenizer tokenizer;
     InvertedIndex invertedIndex;
+    Trie trie;
     unordered_map<int, int> docSize;
     unordered_map<int , vector<string>> documentWords;
     for (auto &doc : documents)
@@ -599,10 +687,22 @@ int main()
         invertedIndex.addDocument(doc, words);
 
         invertedIndex.countFreq(words);
+
+        unordered_set<string> uniqueWords(words.begin(),words.end());
+        for(auto &word : uniqueWords){
+            trie.insert(word);
+        }
     }
     cout << "Enter words to search: ";
     string query;
     getline(cin, query);
+    auto suggestions = trie.autocomplete(query);
+    if(!suggestions.empty()){
+        cout<<"Did you mean: "<<endl;
+        for(auto&word:suggestions){
+            cout<<word<<endl;
+        }
+    }
     cout << "The words \" " << query << " \"" << " is found in : " << endl;
     
     vector<string> tokens = tokenizer.tokenize(query);
@@ -659,4 +759,5 @@ int main()
         string output = snippet.highlightSnippet(res , tokens);
         cout<<"document "<<doc.second<<"-> "<<output<<endl;
     }    
+
 }
