@@ -631,6 +631,35 @@ class Trie{
         }
     }
 
+    void dfsAll(TrieNode* node,string &currentWord,vector<string> &words){
+        if(node->isWord){
+            words.push_back(currentWord);
+        }
+
+        for(auto &child : node->children){
+            currentWord.push_back(child.first);
+
+            dfsAll(child.second,currentWord,words);
+
+            currentWord.pop_back();
+        }
+    }
+
+    vector<string> collectAllWords(const string& prefix){
+        vector<string> words;
+
+        TrieNode* node = findPrefix(prefix);
+
+        if(node==nullptr)
+            return words;
+
+        string currentWord = prefix;
+
+        dfsAll(node,currentWord,words);
+
+        return words;
+    }
+
     vector<string> autocomplete(const string& prefix , int k = 5){
         vector<string> suggestions;
         TrieNode* node = findPrefix(prefix);
@@ -643,6 +672,90 @@ class Trie{
         return suggestions; 
     }
 };
+
+class FuzzySearch{
+    public:
+    int levenshteinDistance(const string &a, const string &b){
+    int n = a.size();
+    int m = b.size();
+
+    vector<vector<int>> dp(n + 1, vector<int>(m + 1));
+
+    for (int i = 0; i <= n; i++)
+        dp[i][0] = i;
+
+    for (int j = 0; j <= m; j++)
+        dp[0][j] = j;
+
+    for (int i = 1; i <= n; i++){
+        for (int j = 1; j <= m; j++){
+            if (a[i - 1] == b[j - 1]){
+                dp[i][j] = dp[i - 1][j - 1];
+            }
+            else{
+                dp[i][j] = 1 + min({
+                    dp[i - 1][j],     
+                    dp[i][j - 1],    
+                    dp[i - 1][j - 1]  
+                });
+            }
+        }
+    }
+
+    return dp[n][m];
+}
+
+vector<string> generateCandidates(const string &query,Trie &trie,InvertedIndex &index){
+    vector<string> candidates;
+    string prefix = query.substr(0,min(3,(int)query.size()));
+
+    candidates = trie.collectAllWords(prefix);
+
+    if(candidates.empty())
+    {
+        for(auto &entry:index.index)
+        {
+            const string &word = entry.first;
+
+            if(abs((int)word.size()-(int)query.size())<=2)
+            {
+                candidates.push_back(word);
+            }
+        }
+    }
+
+    vector<string> filtered;
+
+    for(auto &word:candidates)
+    {
+        if(abs((int)word.size()-(int)query.size())<=2)
+        {
+            filtered.push_back(word);
+        }
+    }
+
+    return filtered;
+}
+
+string bestSuggestion(const string &query,const vector<string> &candidates){
+    int bestDistance = INT_MAX;
+
+    string answer = "";
+
+    for(auto &word:candidates){
+        int distance = levenshteinDistance(query,word);
+
+        if(distance<bestDistance)
+        {
+            bestDistance = distance;
+            answer = word;
+        }
+    }
+
+    return answer;
+}
+};
+
 
 int main()
 {
