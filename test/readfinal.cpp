@@ -756,7 +756,6 @@ string bestSuggestion(const string &query,const vector<string> &candidates){
 }
 };
 
-
 int main()
 {
     vector<Document> documents;
