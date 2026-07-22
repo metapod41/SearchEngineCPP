@@ -13,7 +13,7 @@ public:
 
     vector<string> generateCandidates(const string &query,Trie &trie,InvertedIndex &index);
 
-    string bestSuggestion(const string &query,onst vector<string> &candidates);
+    string bestSuggestion(const string &query,const vector<string> &candidates);
 
     
     string correctQuery(const string &query,Trie &trie,InvertedIndex &index);

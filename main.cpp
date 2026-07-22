@@ -16,7 +16,6 @@ int main()
 
     engine.buildIndex();
 
-    cout << "Enter words to search : ";
 
     string query;
     getline(cin, query);
