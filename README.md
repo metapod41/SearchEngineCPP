@@ -367,17 +367,3 @@ The goal of this project was different.
 The objective was to understand how a search engine works internally by implementing the core algorithms from scratch.
 
 ---
-
-# Contributing
-
-Contributions, suggestions, and improvements are welcome.
-
-Feel free to fork the repository and open a pull request.
-
----
-
-# License
-
-This project is licensed under the MIT License.
-
----
