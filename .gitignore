@@ -1,14 +1,86 @@
+# ===========================
+# C++ / CMake
+# ===========================
+
 build/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 compile_commands.json
 Makefile
+CTestTestfile.cmake
+install_manifest.txt
 
 *.o
 *.obj
 *.exe
 *.out
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# ===========================
+# Node.js
+# ===========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===========================
+# Frontend Build
+# ===========================
+
+frontend/dist/
+frontend/.vite/
+
+# ===========================
+# Backend Uploads
+# Keep the folder but ignore uploaded files
+# ===========================
+
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# ===========================
+# Environment Variables
+# ===========================
+
+.env
+.env.local
+.env.*
+
+# ===========================
+# VS Code / IDE
+# ===========================
 
 .vscode/
 .idea/
+
+# ===========================
+# OS Files
+# ===========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================
+# Logs
+# ===========================
+
+logs/
+*.log
+
+# ===========================
+# Temporary Files
+# ===========================
+
+*.tmp
+*.temp
+*.swp
+*.swo
