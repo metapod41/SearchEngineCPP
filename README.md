@@ -287,25 +287,29 @@ SearchEngineCPP/
 
 ## Home
 
-> *(Add screenshot here)*
+> <img width="1392" height="772" alt="home page engine" src="https://github.com/user-attachments/assets/078f9cef-11ff-404f-832f-53ce02f49ce7" />
+
 
 ---
 
 ## Upload
 
-> *(Add screenshot here)*
+> <img width="1261" height="302" alt="upload engine" src="https://github.com/user-attachments/assets/cb12fd68-2374-4cf9-97e7-edbbd0ed4bbd" />
+
 
 ---
 
 ## Search Results
 
-> *(Add screenshot here)*
+> <img width="1345" height="702" alt="search engine" src="https://github.com/user-attachments/assets/beb10261-39aa-4bf4-990e-f8add8a8de93" />
+
 
 ---
 
 ## Highlighting
 
-> *(Add screenshot here)*
+> <img width="305" height="197" alt="highlight engine" src="https://github.com/user-attachments/assets/3771efb8-88fc-441a-8a7f-738dc1bc17de" />
+
 
 ---
 
