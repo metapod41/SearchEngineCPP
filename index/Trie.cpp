@@ -31,7 +31,7 @@ bool Trie::search(const string &word)
 {
     TrieNode *current = root;
 
-    for (auto &ch : word)
+    for (char ch : word)
     {
         if (current->children.find(ch) == current->children.end())
         {
@@ -48,7 +48,7 @@ TrieNode *Trie::findPrefix(const string &prefix)
 {
     TrieNode *current = root;
 
-    for (auto &ch : prefix)
+    for (char ch : prefix)
     {
         if (current->children.find(ch) == current->children.end())
         {
@@ -63,33 +63,30 @@ TrieNode *Trie::findPrefix(const string &prefix)
 
 void Trie::dfs(TrieNode *node,string &currentWord,vector<string> &suggestions,int k)
 {
-    if (suggestions.size() == k)
-    {
+    if (suggestions.size() >= k)
         return;
-    }
 
     if (node->isWord)
     {
         suggestions.push_back(currentWord);
 
-        if (suggestions.size() == k)
-        {
+        if (suggestions.size() >= k)
             return;
-        }
     }
 
     for (auto &child : node->children)
     {
         currentWord.push_back(child.first);
 
-        dfs(child.second,currentWord,suggestions,k);
+        dfs(child.second,
+            currentWord,
+            suggestions,
+            k);
 
         currentWord.pop_back();
 
-        if (suggestions.size() == k)
-        {
+        if (suggestions.size() >= k)
             return;
-        }
     }
 }
 
@@ -104,7 +101,9 @@ void Trie::dfsAll(TrieNode *node,string &currentWord,vector<string> &words)
     {
         currentWord.push_back(child.first);
 
-        dfsAll(child.second,currentWord,words);
+        dfsAll(child.second,
+               currentWord,
+               words);
 
         currentWord.pop_back();
     }
@@ -117,13 +116,13 @@ vector<string> Trie::collectAllWords(const string &prefix)
     TrieNode *node = findPrefix(prefix);
 
     if (node == nullptr)
-    {
         return words;
-    }
 
     string currentWord = prefix;
 
-    dfsAll(node,currentWord,words);
+    dfsAll(node,
+           currentWord,
+           words);
 
     return words;
 }
@@ -135,13 +134,37 @@ vector<string> Trie::autocomplete(const string &prefix,int k)
     TrieNode *node = findPrefix(prefix);
 
     if (node == nullptr)
-    {
         return suggestions;
-    }
 
     string currentWord = prefix;
 
-    dfs(node,currentWord,suggestions,k);
+    dfs(node,
+        currentWord,
+        suggestions,
+        k);
+
+    return suggestions;
+}
+
+vector<string> Trie::autocompleteQuery(const string &query,int k)
+{
+    string prefix = "";
+    string lastWord = query;
+
+    int pos = query.find_last_of(' ');
+
+    if (pos != string::npos)
+    {
+        prefix = query.substr(0, pos + 1);
+        lastWord = query.substr(pos + 1);
+    }
+
+    vector<string> suggestions = autocomplete(lastWord, k);
+
+    for (string &word : suggestions)
+    {
+        word = prefix + word;
+    }
 
     return suggestions;
 }

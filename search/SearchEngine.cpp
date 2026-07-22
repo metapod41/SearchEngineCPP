@@ -52,6 +52,7 @@ void SearchEngine::loadDocuments(string folder)
 
 void SearchEngine::buildIndex()
 {
+    clearIndex();
     for (auto &doc : documents)
     {
         vector<string> words = tokenizer.tokenize(doc.getContent());
@@ -75,7 +76,10 @@ void SearchEngine::buildIndex()
 
 void SearchEngine::search(string query)
 {
-    auto suggestions = trie.autocomplete(query);
+    query = fuzzySearch.correctQuery(query,
+                                 trie,
+                                 invertedIndex);
+    auto suggestions = trie.autocompleteQuery(query);
 
     if (!suggestions.empty())
     {
@@ -135,7 +139,11 @@ void SearchEngine::search(string query)
 
     for (auto &x : ranked)
     {
-        cout << "Doc "<< x.second<< " Score : "<< x.first<< endl;
+        cout << documents[x.second - 1].getFilename()
+     << " | Score : "
+     << fixed << setprecision(3)
+     << x.first
+     << endl;
     }
 
     cout << endl;
@@ -148,11 +156,22 @@ void SearchEngine::search(string query)
 
         string output = snippet.highlightSnippet(res,tokens);
 
-        cout << "Document "<< doc.second<< " -> "<< output<< endl;
+        cout << documents[doc.second - 1].getFilename()<< " -> "<< output<< endl;
     }
 }
 
 vector<Document> &SearchEngine::getDocuments()
 {
     return documents;
+}
+
+void SearchEngine::clearIndex()
+{
+    docSize.clear();
+    documentWords.clear();
+
+    invertedIndex.index.clear();
+    invertedIndex.docFrequency.clear();
+
+    trie = Trie();
 }

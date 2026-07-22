@@ -31,5 +31,8 @@ public:
 
     vector<string> collectAllWords(const string &prefix);
 
-    vector<string> autocomplete(const string &prefix, int k = 5);
+    vector<string> autocomplete(const string &prefix,int k = 5);
+
+    
+    vector<string> autocompleteQuery(const string &query,int k = 5);
 };

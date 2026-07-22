@@ -27,6 +27,7 @@ private:
     unordered_map<int, vector<string>> documentWords;
 
 public:
+    void clearIndex();
     void loadDocuments(string folder);
 
     void buildIndex();

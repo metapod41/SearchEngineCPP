@@ -1,0 +1,2054 @@
+
+
+Revision as per format MSRIT .F702 Rev. No. 2 
+ 
+Internal Assessment Question Paper – 1  
+Ramaiah Institute of Technology 
+(Autonomous Institute, Affiliated to VTU) 
+Department of CSE 
+ 
+Programme: B.E   Term:  Jan-May 2021  CIE: I 
+Course: Design and Analysis of Algorithms Course Code: CS42  Date: 9/06/2021 
+Credits: 3:1:0    Sem: IV    Section: A, B & C 
+Max Marks: 30    Time: 1Hr              Portions for Test: Units 1 & 2 
+Instructions to Candidates: Mobiles, smart watches or any electronic gadgets are strictly banned. 
+Question 1 is compulsory.  Answer any one question from 2 and 3. 
+ 
+Sl# Question Marks 
+Bloom’s 
+Level 
+CO  
+1 
+a. What is the difference between perfect matching and stable 
+matching? Consider an execution of the G-S algorithm that 
+returns  a  set  of  pairs  S  for  the  given  set  of  men  M  and 
+women W.  Prove that "The set S is a stable matching". 
+6 
+Understand CO1 
+b. Construct  a  proof  for  "If  f  is  a  polynomial  of  degree  d,  in 
+which the coefficient a
+d
+ is positive. Then f = O(n
+d
+)". 
+4 
+Understand CO1 
+c. Apply  the  divide  and  conquer  algorithm  to  the following 
+numbers, and count the number of inversions in it. {21, 16, 
+22, 15, 24, 32, 12, 14, 27, 11} 
+5 
+Apply CO2 
+ 
+2 
+a. Design an algorithm to find stable matching for a given "n" 
+men  &  "n"  women  set.  State  the  real  world  example  for 
+stable matching algorithm.  
+6 
+Understand CO1 
+b. Compute  the  topological  ordering  for  the  following  graph 
+using source removal method. 
+ 
+4 
+Apply CO2 
+
+Revision as per format MSRIT .F702 Rev. No. 2 
+ 
+c. Construct  the  DFS  Traversal  tree  for  the  following  graph 
+with "A" as the source vertex. 
+ 
+5 
+Apply CO2 
+OR 
+3 
+a. Prove the following. 
+i. T(n) = 4n
+2
++3n+2 is O(n
+3
+) 
+ii. T(n) = 4n
+2
++3n+2 is Ω(n) 
+4 
+Apply CO1 
+b. Design an algorithm  to determine whether a given graph is 
+bipartite or not. 
+5 
+Understand CO2 
+c. Design  an  algorithm  for  sorting  numbers  using  divide  and 
+conquer  method.  Discuss  the  best,  average  and worst-case 
+efficiency of the algorithm. 
+6 
+Understand CO2 
+ 
+Course Outcomes meant to be assessed by the IA Test:  
+CO1: Define  the  basic  concepts  and  analyze  worst-case  running  times  of  algorithms  using 
+asymptotic analysis. (PO1, PO2, PO3, PSO2, PSO3) 
+CO2: Recognize the design techniques for graph traversal using representative algorithms. (PO1, 
+PO2, PO3, PSO2, PSO3) 
+ 
+ 
+
+
+
+RAMAIAH 
+Institute of Technology 
+1.a 
+Programme: 
+B. 
+E. 
+-Computer 
+Science 
+and 
+Engineering 
+(Al&ML) 
+Computer 
+Science 
+and 
+Engineering 
+(Cyber 
+Security) 
+Internal 
+Assessment 
+-
+I 
+TERM: 
+3rd 
+March 
+2025 
+to 
+21 
+June 
+2025 
+DATE: 
+25/04/2025 
+TIME: 
+11:00 
+AM 
+to 
+12:00 
+PM 
+MAX MARKS: 30 
+Q. NO 
+1.b 
+Dept. 
+of 
+Computer 
+Science 
+and 
+Engineering 
+(A 
+& 
+Computer 
+Science 
+and 
+Engineering 
+(Cyber 
+Secu 
+1.c 
+2.a 
+Mobile Phones are banned 
+Questions 
+COURSE 
+NAME: 
+Design 
+and 
+Analysis 
+of 
+Algorithms 
+Instructions 
+to 
+Candidates: 
+Answer 
+any 
+two 
+full 
+questions. 
+COURSE CODE : CI43/CY43 
+PORTIONS: LI to L18 
+Discuss how asymptotic bounds are used to represent the performance of 
+algorithms and explain the properties involved in measuring their 
+eficiency. 
+Consider the graph given in Figure 1(c) 
+Illustrate the tracing of the Quick sort algorithm for the given array of 
+numbers and compute the average time complexity. 
+Fig l(c) Graph 
+2, 7, 8, 3, 1,9, 5, 6, 3 
+i. Starting at vertex 'a' and resolving ties by the vertex alphabetical order, 
+traverse the graph by Breadth First Search (BFS). Illustrate the queue 
+operations for performing BFS Traversal to obtain BFS Spaming Tre. 
+ii. Specify all possible BFS Traversal sequences. 
+Design an algorithm to search an element in an array using linear search 
+10,5,6,3, 1,2,7. Derive the best case, worst case and average case efficiency 
+of this algorithm. 
+Blooms 
+Levels 
+(LI to L6) 
+L2 
+L3 
+L3 
+Marks: 1 
+L3 
+CO 
+COI 
+co: 
+CO2 
+CO 
+
+2.b 
+2.c 
+3.a 
+3.b 
+3.c 
+Consider the graph given in Figure 2(b) 
+i. List the adjacency matrix and adjacency list for the graph in 2.b, starting 
+from vertex 'a'. 
+ii. Starting at vertex a' and resolving ties by the vertex alphabetical order, 
+traverse the graph by Depth First Search (DFS). Illustrate the stack 
+operations for performing DFS Traversal to obtain DFS Spanning Tree. 
+Apply the master theorem and find the time complexity for the following 
+equations. 
+i) Tn) =3r()+n 
+ii) T(n) 
+Fig 2(b) Graph 
+= 
+i) T(n) =T) +2" 
+Construct a heap for the list 1, 8, 6, 5, 3, 7, 4 by the bottom-up approach. 
+by showing every step of heap construction to obtain heap sort. 
+a) Building Max/Min Heap 
+b) Maximum/Minimum Key Deletion from a heap. 
+Design an algorithm for the given scenario. You are given a list of 2n disks, 
+n dark and n light, in a random order. Each disk is labeled either 'D' for 
+dark or L' for light. Your goal is to sort the disks so that all light disks 
+come before all dark disks, using any sorting algorithm. Disks can be 
+moved 
+around 
+freely 
+in 
+memory 
+(like 
+in 
+arrays). 
+I1_R emamhar I 
+Apply the source elimination graph to represent vertices in topological 
+order for the graph given below and provide the sort order. 
+A1-. 
+A 
+L3 
+L5 
+L3 
+L4 
+L3 
+CO2 
+5 
+CO2 
+CO3 
+S 
+CO2 
+CO2 
+
+RAM 
+Instite of Technology 
+TERM: 
+03-03-2025 
+to 
+21-06-2025 
+DATE: 17/06/2025 
+MAX MARKS: 30 
+SEMESTER: 4 
+Programme: BE -CSE (AI&ML) and CSE (CS) 
+Internal Assessment -II 
+1.a 
+Q. NO 
+Mobile Phones are banned 
+TIME: 10:30am to 11:30am 
+Dept. of CSE (AI & ML) and CSE(CS) 
+Instructions 
+to 
+Candidates: 
+Answer 
+any 
+TWO 
+full 
+questions. 
+Consider the frequency table given in Table. 1b 
+Character 
+a 
+b 
+1 
+Differentiate between NP Hard and NP Complete Problems. 
+Questions 
+2 
+Frequency 
+9 
+12 
+13 
+4 
+16 
+45 
+Table. 1b 
+i) 
+Construct 
+a 
+Huffman 
+Tree 
+and 
+compute the 
+codeword 
+for 
+all 
+the 
+characters. 
+COURSE NAME: DESIGN AND 
+ANALYSIS OF ALGORITHMS 
+COURSE CODE: CI43/CY43 
+i) Encode "adadcabcdaefabcde" using the codevword computed. 
+PORTIONS: L19 to L42 
+Identify the minimum spanning tree for the graph given in Figure lc. 
+Illustrate the steps for computing the MST using Prim's algorithm with 
+source node as 1. 
+3 
+SECTION: 4A, 4B (AI&ML) and 4A (CS) 
+5 
+Figure lc. 
+2 
+2 
+5 
+Marks: 15x2-30 
+Blooms 
+|Levels 
+CO Marks 
+L2 COS 
+L3 CO3 
+L3 
+CO3 
+
+RAMAIAH 
+Institute of Technology 
+2.a 
+Identify the maximum subset-sum and the maximum value that can be 
+achieved for the following items with maximum capacity W=6. Apply 
+dymamic programming algorithm to the given instance of knapsack 
+problem in Table 2a. 
+3 
+START 
+|Item| Weight Profit 
+1 
+2 
+Compute the following: 
+3 
+Dept. 
+of 
+CSE 
+(AI 
+& 
+ML) 
+and 
+CSE(CS) 
+2 
+2 
+1 
+3 
+4 
+Table 2a. 
+Find the shortest path from node 1 to every other node in Figure 2(b) 
+graph using Bellman Ford Algorithm. 
+Fig.2(b) Graph 
+3 
+3 
+10 
+5 
+Given the graph in Fig. 2(c), use Dijkstra's algorithm to find the 
+shortest path from node A (START) to node G (END). 
+Fig. 2(c) Graph 
+42 
+46 
+6 
+6 
+GEND 
+(i) At each step, calculate the current shortest distances from A to all 
+other nodes and represent it as a distance matrix 
+(i) In each iteration, show the node that is selected and compute the final 
+shortest path from A to G along with the total cost of this shortest path. 
+L3 
+L3 
+L3 CO3 
+C04 
+CO4 
+5 
+
+3.a 
+b 
+AIAH 
+e of Technology 
+Solve 
+the all 
+pairs 
+shortest-path 
+problem 
+using 
+Flyod's 
+Algorithm 
+for 
+the 
+digraph 
+with 
+the 
+weight 
+matrix 
+given 
+in 
+the 
+graph in 
+Fig 
+3(a) 
+Dept. of CSE (AI && ML) and CSE(CS) 
+6 
+2 
+2 
+Fig 3.a Graph 
+Consider 
+the 
+graph 
+given 
+in 
+Fig.3b. 
+Apply 
+backtracking 
+to the 
+given 
+problem 
+considering 
+the 
+start 
+vertex as 
+'a'. 
+Construct 
+the 
+State-space 
+tree 
+for finding a Hamiltonian circuit in the given graph. 
+0 3 
+Fig.3b.Graph 
+Apply the Ford-Fulkerson's Algorithm to find a maximum flow and a 
+minimum cut 
+in 
+the 
+network 
+given in 
+Fig 
+3(c). 
+Calculate the 
+maximum 
+flow 
+pushed 
+fromn 
+source 
+(1) 
+to 
+sink 
+(6) 
+through 
+multiple 
+augmenting 
+paths by 
+representing 
+the 
+residual 
+graphs at 
+each 
+augmentation 
+path. 
+3 
+5 
+Fig.3c Graph 
+5 
+3 
+2 
+L3 CO4 
+L3 
+L3 
+L1-Remember, L2-Understand, L3-Apply, L4-Analyze, LS-Evaluate, L6-Create 
+COS 
+CO4 
+5 
+5 
+
+Revision as per format MSRIT .F702 Rev. No. 2 
+ 
+   Internal Assessment Question Paper – 2 
+ Ramaiah Institute of Technology 
+(Autonomous Institute, Affiliated to VTU) 
+             Department of Artifiial Intelligence and Data Science  
+Programme: B.E       Term:  June-Sept 2023    Max Marks: 30        
+CIE: Test 2                Subject: Design and Analysis of Algorithms                                  Subject Code: AD43/AI43                                        
+Crédits: 3:0:0:0 
+Sem: IV                       Date:  26/07/2023                  Time: 2:00 to 3:00                    Portions for Test: (L21-L42) 
+ 
+Instructions to Candidates: 
+1. Question 1 is Compulsory.  Answer any one question from 2 and 3. 
+2. Each Question carries 15M.  Write figures wherever necessary. 
+3. Mobiles/Smart Gadgets are restricted. 
+ 
+Sl# Question Mar
+ks 
+Bloom’s 
+Level 
+CO 
+Map
+ping 
+1 
+a. Construct  the  Huffman  tree  and  the  prefix  code  for  the  given  set  of  alphabets  and  their 
+frequencies. S={a,b,c,d,e} 
+f
+a
+=0.40, f
+b
+=0.1, f
+c
+=0.25, f
+d
+=0.2, f
+e
+=0.05 
+04 
+Apply CO3 
+b. 
+i.  Identify the shortest path for the following graph from source ‘1’ to all other nodes.   (5M) 
+  
+ 
+ 
+ii. Construct a proof for “The greedy algorithm returns an optimal set A” for a given set of 
+intervals with their start time (si) and finish time (fi).   (4M) 
+ 
+ 
+09 
+Apply CO3 
+c. Define P and NP. 
+02 
+Remem
+ber 
+CO2 
+2 
+Identify  the  items  along  with  maximum  profit  that  belong  to  the  knapsack  with  maximum 
+capacity 6 for the following. 
+Item Weight Value 
+1 2 10 
+2 3 20 
+3 4 10 
+4 5 30 
+ 
+05 
+Apply CO4 
+ 
+b. Identify  the  shortest  path  for  the given  graph  from  each  node  to ‘t’  using  Bellman  ford 
+algorithm. 
+06 
+Apply CO4 
+
+ 
+ 
+c.  Design  an  algorithm  to  determine  the  lateness  for  a  given  set  of  intervals  with  their  time 
+duration(t
+i
+) and deadlines(d
+i
+). 
+04 
+Apply CO3 
+ 
+ 
+ 
+ 
+ 
+3 
+a. Identify  the  maximum flow  F
+M
+ for the following graph from “A-> I” using Ford-Fulkerson 
+algorithm. 
+ 
+06 
+Apply CO4 
+ 
+b. Illustrate Optimal Caching Technique 
+04 
+Apply CO3 
+ 
+c. Construct the minimum spanning tree for the following graph using Prim’s algorithm.  
+ 
+05 
+Apply CO3 
+Course Outcomes meant to be assessed by the IA Test 2:  
+CO3:  Illustrate  the  design  techniques  for  divide  and  conquer  algorithms  and  analyze  their  complexity  by  solving  recurrence  relations. 
+(PO1, PO2, PO3, PO4, PO5, PO12, PSO2) 
+CO4:  Illustrate  Greedy  paradigm  and  Dynamic  programming  paradigm  using  representative  algorithms.  (PO1,  PO2,  PO3,  PO4,  PO5, 
+PO12, PSO2) 
+CO5: Describe the classes P, NP, and NP-Complete and be able to prove that a certain problem is NP-Complete and examine the techniques 
+of proof by contradiction, mathematical induction and recurrence relation, and apply them to prove the correctness of the running time 
+of algorithms. (PO1, PO2, PO3, PO4, PO5, PO12, PSO2)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Revision as per format MSRIT .F702 Rev. No. 2 
+ 
+ 
+ 
+
+Revision as per format MSRIT .F702 Rev. No. 2 
+ 
+Internal Assessment Question Paper – 2  
+Ramaiah Institute of Technology 
+(Autonomous Institute, Affiliated to VTU) 
+Department of CSE 
+ 
+Programme: B.E   Term:  Jan-May 2021  CIE: II 
+Course: Design and Analysis of Algorithms Course Code: CS42  Date: 13/07/2021 
+Credits: 3:1:0    Sem: IV    Section: A, B & C 
+Max Marks: 30    Time: 1Hr              Portions for Test: Units 3, 4 & 5 
+Instructions to Candidates: Question 1 is compulsory. Answer any one from 2
+nd
+  and 3
+rd
+ question. 
+ 
+Sl 
+# 
+Question Marks 
+Bloom’s 
+Level 
+CO  
+1 
+a. Explain the concept Polynomial Time Reduction. 
+3 
+Understand CO5 
+b. Construct the Huffman Tree  for the following symbols and 
+write  the  respective  code  words. Find  the  average  code 
+word length. 
+ 
+6 
+Apply CO3 
+c. Apply   the   Memoization   algorithm   for   the   following 
+problem to find the optimal set of intervals. 
+ 
+6 
+Apply CO4 
+ 
+2 
+a. Describe  the optimization  version  of the Independent  Set 
+problem. 
+3 
+Understand CO5 
+b. Calculate  the  lateness  for  each of  the  following  task  with 
+greedy  approach.  Ti  is  Time  length  for  Task "i". Di is the 
+deadline for that task. 
+ 
+5 
+Apply CO3 
+c. Apply  the  Ford  Fulkerson  algorithm  to  find  the  maximum 
+flow path from S to T in the given flow network. 
+ 
+7 
+Apply CO4 
+
+Revision as per format MSRIT .F702 Rev. No. 2 
+ 
+ 
+OR 
+3 
+a. Describe   the decision version   of the Independent   Set 
+problem. 
+3 
+Understand CO5 
+b. Apply the  single source  shortest  path  algorithm  to  the 
+following graph. 
+ 
+6 
+Apply CO3 
+c. Apply  the  Bellman  ford algorithm  for  the  following  graph 
+to  find  the  shortest  path.  Assume  node  "S"  as  the  starting 
+vertex. 
+ 
+6 
+Apply CO4 
+ 
+Course Outcomes meant to be assessed by the IA Test:  
+CO3: Illustrate  the  design  techniques  for  divide,  conquer  algorithms, and  analyze  their  complexity  by  solving 
+recurrence relations. 
+CO4: Illustrate Greedy paradigm and Dynamic programming paradigm using representative algorithms. 
+CO5: Describe the classes P, NP, and NP-Complete and be able to prove that a certain problem is NP-Complete and 
+examine the techniques of proof by contradiction, mathematical induction and recurrence relation, and apply them to 
+prove the correctness of the running time of algorithms. 
+ 
+
+CS42(OO) 
+Page 1 of 4 
+ 
+ 
+ 
+ (Autonomous Institute, Affiliated to VTU) 
+(Approved by AICTE, New Delhi & Govt. of Karnataka)  
+Accredited by NBA & NAAC with ‘A+’ Grade 
+ 
+SEMESTER END EXAMINATIONS –  AUGUST / SEPTEMBER 2023 
+Program : 
+B.E. - Computer Science and 
+Engineering 
+Semester : 
+IV 
+Course Name : 
+Design  and  Analysis  of  Algorithms 
+Max. Marks : 100 
+Course Code : 
+CS42(OO) 
+Duration : 3 Hrs 
+ 
+Instructions to the Candidates: 
+ Answer one full question from each unit. 
+ 
+  UNIT - I   
+1. a) What  is  matching,  perfect  matching,  stable  matching  and  best  valid 
+partner  with  respect  to  Gale-Shapely  algorithm? Consider  an  execution 
+of  the  G-S  algorithm  that  returns  a  set  of  pairs  S  for  the given  set  of 
+men M and women W. Prove that “The set S is a stable matching”. 
+CO1 (08) 
+ b) Consider  two  players  P1  and  P2  and  nodes  in  the  following  order  for 
+competitive facility location problem. [10,24,17,22,20,18,12,9,17]. If P1 
+moves first and then P2, does target bound 35 and 40 are achievable by 
+P2? 
+CO1 (06) 
+ c) Illustrate how asymptotic bounds are used for analyzing algorithms. CO1 (06) 
+     
+2. a) Determine  the  stable  matching  set  S  for  the  following  set  of  men  and 
+women using Gale-Shapley algorithm. 
+Men’s Preference List  Women’s Preference List 
+A R Q S P  P A B D C 
+B Q P R S  Q C A D B 
+C Q S P R  R C B D A 
+D R P S Q  S B A C D 
+ 
+CO1 (06) 
+ b) Justify the transitivity property of asymptotic growth rate. 
+i) Suppose  that  f  and  g  are  two  functions  such  that  for  some  other 
+function h, we have f = O(h) and g = O(h). Then f + g = O(h). 
+ii) If f = Ω(g) and g = Ω(h), then f = Ω(h). 
+CO1 (06) 
+ c) Justify that every execution of Gale Shapley algorithm for a given set of 
+men M and set of women W results in the set S* where S*denote the set 
+of pairs {(m,best(m),:m∈M}. 
+CO1 (08) 
+     
+  UNIT - II   
+3. a) Illustrate the Depth First Search algorithm with an example and find its 
+worst   case   efficiency   when   graph   is   given   by adjacency   list 
+representation. 
+CO2 (06) 
+ b) Compute  Breadth  First  Search  for  the  following  graph.  Verify  the 
+bipartiteness of the given graph? 
+ 
+CO2 (08) 
+ c) Prove that if graph G=(V,E) has a topological ordering, then G is a DAG. CO2 (06) 
+USN 1 M S        
+ 
+
+CS42(OO) 
+Page 2 of 4 
+ 
+     
+4. a) Write an algorithm to sort the ‘n’ numbers using Quick sort method. CO2 (06) 
+ b) Find the number of inversions for the following set of numbers. 
+56 67 45 78 34 12 98 89 100 
+ 
+CO2 (08) 
+ c) Prove  that  the  time  complexity  of  merge  sort  is  O(n  log  n)  using 
+“unrolling method” and deduce the recurrence relation for the same. 
+CO2 (06) 
+     
+  UNIT- III   
+5. a) Construct single source shortest path for the following graph with “A” as 
+the source vertex. Using Dijkstra’s algorithm. 
+ 
+CO3 (08) 
+ b) Prove that “Greedy algorithm for interval scheduling returns an optimal 
+set A”. 
+CO3 (06) 
+ c) Construct  the  minimum  spanning  tree  for  the  following  graph  using 
+Prim’s algorithm. 
+ 
+CO3 (06) 
+     
+6. a) Identify  the  optimal  set  of  intervals  that  can  be  scheduled  for  the 
+following set on intervals using greedy interval scheduling algorithm. 
+ 
+CO3 (06) 
+ b) Using  Huffman  coding,  find  the  average  code  word  length  for  the 
+following table. 
+Character A B C D E F 
+Frequency 3 5 1 4 2 3 
+ 
+CO3 (06) 
+ c) Describe  the  Kruskal’s  algorithm  to  find  Minimum  Spanning  Tree  and 
+apply  the  algorithm  for  the  following  graph  to  find  the  minimum 
+spanning tree. 
+ 
+CO3 (08) 
+
+CS42(OO) 
+Page 3 of 4 
+ 
+     
+  UNIT- IV   
+7. a) Discuss survey-design problem for a given set of customers and products 
+with an algorithm. 
+CO4 (06) 
+ b) Compute  the  maximum  subset-sum  that  can  be  achieved  for  the 
+following items with maximum capacity W=8. 
+Item Weight 
+1 1 
+2 2 
+3 7 
+4 5 
+ 
+CO4 (07) 
+ c) Use  ford  Fulkerson  algorithm to  identify  the  maximum  flow  between 
+source vertex 0 and destination vertex 5. 
+ 
+CO4 (07) 
+     
+8. a) Apply  bellman  ford  algorithm  to  find  the distance from  source vertex 
+‘a’ to destination vertex ‘t’ in a weighted digraph. 
+ 
+CO4 (08) 
+ b) Given the array M of the optimal values of the sub-problems, prove that 
+Find_Solution(  )  returns  an  optimal  solution  in  O(n)  time.  Illustrate  the 
+proof with this example. 
+ 
+CO4 (06) 
+ c) Calculate  the  maximum  value  possible  by  considering  the  following 
+instance and knapsack capacity W=10. 
+Item Weight Value 
+1 4 20 
+2 7 32 
+3 5 20 
+4 3 32 
+ 
+CO4 (06) 
+
+CS42(OO) 
+Page 4 of 4 
+ 
+     
+  UNIT- V   
+9. a) What  do  you  mean  by  polynomial  time  reduction?  Give  a  correlation 
+between vertex-cover and independent set problem. 
+CO5 (08) 
+ b) Define P, NP, NP-complete and NP-Hard. CO5 (04) 
+ c) Find  all  Hamiltonian  Paths  in  the  given  graph.  Prove  that  Hamiltonian 
+Path is NP-Complete. 
+ 
+CO6 (08) 
+     
+10. a) Construct  a  proof ,Suppose  X  is  an  NP-complete  problem.  Then  X  is 
+solvable in polynomial time if and only if P = NP. 
+CO5 (05) 
+ b) Illustrate  with  the  help  of  an  example,  Traveling  Salesman  Problem  in 
+detail. 
+CO5 (07) 
+ c) Explain  the  general  strategy  to  prove  NP-Complete  problems.  Explain 
+with one example. 
+CO5 (08) 
+ 
+******************************** 
+
+CS43 
+Page 1 of 3 
+ 
+ 
+ 
+ (Autonomous Institute, Affiliated to VTU) 
+(Approved by AICTE, New Delhi & Govt. of Karnataka)  
+Accredited by NBA & NAAC with ‘A+’ Grade 
+ 
+SEMESTER END EXAMINATIONS – AUGUST / SEPTEMBER 2023 
+Program : 
+B.E. - Computer Science and 
+Engineering 
+Semester : 
+IV 
+Course Name : 
+Design  and  Analysis  of  Algorithms 
+Max. Marks : 100 
+Course Code : 
+CS43 
+Duration : 3 Hrs 
+ 
+Instructions to the Candidates: 
+ Answer one full question from each unit. 
+ 
+  UNIT - I   
+1. a) With  example  explain  worst  case,  best  case  and  average  case  timing 
+with example. 
+CO1 (06) 
+ b) Explain the various Asymptotic notations with example. CO1 (10) 
+ c) List out the steps in mathematical analysis of non-recursive algorithms. CO1 (04) 
+  
+   
+2. a) Explain with example stable matching algorithm. CO1 (10) 
+ b) Discuss linear time and quadratic time with examples. CO1 (10) 
+     
+  UNIT - II   
+3. a) Write  an  algorithm  to  sort  the  ‘n’  numbers using  divide  and  conquer 
+approach. 
+CO2 (06) 
+ b) Compute  Breadth  First  Search  and  Depth  First  Search  for  the  following 
+graph. Verify the bipartiteness of the given graph? 
+ 
+Fig.3(b) 
+CO2 (08) 
+ c) Prove that if graph G=(V,E) has a topological ordering, then G is a DAG. CO2 (06) 
+     
+4. a) Illustrate  the  Depth  First  Search  algorithm  and  find  its  worst  case 
+efficiency when graph is given by adjacency list representation. 
+CO2 (06) 
+ b) Find the number of inversions for the following set of numbers. 
+55 66 44 77 33 11 99 88 100 
+ 
+CO2 (08) 
+ 
+c) Prove  that  the  time  complexity  of  merge  sort  is  O(n  log  n)  using 
+“unrolling method” and deduce the recurrence relation for the same. 
+CO2 (06) 
+ 
+ 
+ 
+ 
+ 
+  UNIT - III   
+5. a) Design the greedy algorithm for Interval Scheduling for minimizing 
+the maximum lateness. Outline the running time of the algorithm. Apply 
+the  same  for  calculating  the  lateness  for  each  task,  where  T
+i
+ is  Time 
+length for Task i and D
+i
+ is deadline for that task. 
+Task 1 2 3 4 5 6 
+T
+i
+ 6 4 2 8 6 4 
+D
+i
+ 12 16 18 18 28 30 
+ 
+CO3 (08) 
+     
+USN 1 M S        
+ 
+
+CS43 
+Page 2 of 3 
+ 
+     
+ b) Explain the concept of greedy technique for Prim’s algorithm. Obtain the 
+minimum cost spanning tree for the given weighted graph. 
+ 
+Fig.5(b) 
+CO3 (06) 
+ c) Construct the Huffman tree for the following symbols. Find the code 
+words and average code word length. 
+ 
+Encode : (i) DAB (ii) AB_CD 
+CO3 (06) 
+  
+   
+6. a) Design the single source shortest path algorithm and Apply the same for 
+the given graph by considering ‘S’ as the source vertex, Show the step 
+by step execution of the algorithm using a table.: 
+ 
+Fig.6(a) 
+CO3 (08) 
+ b) Differentiate between fixed-length encoding, variable length encoding 
+and optimal prefix encoding for a given set of alphabets. Which 
+encoding is more suitable and why? 
+CO3 (06) 
+ c) Develop   an   algorithm   for   greedy   based   optimal   caching   problem. 
+Illustrate the   optimized   cache   misses   with   the   following   values.              
+a,  b,  c,  d,  a, d,  e,  a,  d,  b,  c  with  cache  size  k=3  and  3  and  items           
+{a, b, c} initially in the cache. 
+CO3 (06) 
+     
+  UNIT- IV   
+7. a) Solve the Knapsack instance with the given input data by identifying the 
+items  to  be  placed  in  the  knapsack with  capacity  W=10 and write  an 
+algorithm for the same: 
+Item Weight Value 
+1 7 42 
+2 3 12 
+3 4 40 
+4 5 25 
+ 
+CO4 (08) 
+     
+
+CS43 
+Page 3 of 3 
+ 
+     
+ b) Find  the  shortest  path  from  node  1  to  every  other  node  in  the  given 
+graph using Bellman-Ford algorithm. 
+ 
+ 
+Fig.7(b) 
+CO4 (08) 
+ c) Discuss survey-design problem for a given set of customers and 
+products with an algorithm. 
+CO4 (04) 
+     
+     
+8. a) Design a recursive procedure to find the optimal weight of the intervals 
+for  a  given  set  of  intervals  with  their  weights. List  the  intervals  that 
+needs  to  be  selected  so  that  maximum  weight  of  the intervals  is 
+achieved for the following set of intervals? 
+ 
+CO4 (08) 
+ b) Demonstrate the Ford-Fulkerson algorithm to find the maximum flow in 
+the given graph. 
+ 
+Fig.8(b) 
+CO4 (08) 
+ c) Discuss the airline scheduling problem with an example. CO4 (04) 
+     
+  UNIT- V   
+9. a) With proper assumptions prove the following: 
+i) Let  G  =  (V,E)  be  a  graph.  Then  S  is  an  independent  set  if  and 
+only if its complement V - S is a vertex cover. 
+ii) Vertex Cover<=p independent set 
+iii) Vertex cover <=p set cover. 
+CO5 (06) 
+ b) Explain with example Travelling Salesman Problem. CO5 (08) 
+ c) Discuss Hamiltonian Cycle Problem with example. CO5 (06) 
+   
+  
+10. a) Explain General Strategy for Proving New Problems NP-Complete. CO5 (06) 
+ b) Explain with example Circuit Satisfiability. CO5 (08) 
+ c) With   example   explain   how   to   solve   n-queen’s  problem  using 
+backtracking method. 
+CO5 (06) 
+ 
+******************************** 
+
+CS42(OO) 
+Page 1 of 4 
+ 
+ 
+ 
+ (Autonomous Institute, Affiliated to VTU) 
+(Approved by AICTE, New Delhi & Govt. of Karnataka)  
+Accredited by NBA & NAAC with ‘A+’ Grade 
+ 
+SUPPLEMENTARY SEMESTER EXAMINATIONS – JULY 2023 
+Program : 
+B.E. –  Computer Science and 
+Engineering   
+Semester : 
+IV 
+Course Name : 
+Design and Analysis of Algorithms  
+Max. Marks : 100 
+Course Code : 
+CS42(OO) 
+Duration : 3 Hrs 
+ 
+Instructions to the Candidates: 
+ Answer one full question from each unit. 
+ 
+ UNIT – I   
+1. a) Let  f  be  a  polynomial  of  degree  k,  in  which  the  coefficient  a
+K 
+is  positive. 
+Prove the properties of asymptotic growth rates  f= O(n
+K
+) 
+CO1 (06) 
+ b) Write the Gale Shapely algorithm for perfect stable matching. CO1 (05) 
+ c) What is a Bipartite graph? Using Breadth-First Search Algorithm check for 
+the  bipartite-ness  in  the  given  graph.  Comment  on  the  time  and  space 
+complexity. 
+ 
+CO1 (09) 
+     
+2. a) Compare  and  rank  orders  of  growth  using  asymptotic notations  with  a 
+neat diagram. 
+CO1 (06) 
+ b) Suppose  given  n  points  in  a  plane,  each  specified  by  (x,y)  coordinates, 
+write the algorithm to find the pair of points that are closest together and 
+calculate the running time of the algorithm. 
+CO1 (05) 
+ c) 
+ 
+Identify  the  stable  matching  set  of  men  and  women  for  the  above-given 
+preference list. Show the steps of men’s proposal and women’s rejection 
+while creating the stable match. 
+CO1 (09) 
+     
+USN 1 M S        
+ 
+
+CS42(OO) 
+Page 2 of 4 
+ 
+ 
+  UNIT – II   
+3. a) Define the Graph, its type, path, cycle, and applications of graphs. CO2 (08) 
+ b) 
+ 
+Write  the  DFS  algorithm  and  show  the  working  of  DFS  over  the  given 
+graph. Show the stack implementation of the same. 
+CO2 (08) 
+ c) Compare DFS and BFS algorithm’s efficiency in terms of space and Time. CO2 (04) 
+     
+4. a) Apply the Topological ordering algorithm over the given graph.  Comment 
+on  the  running  time  of  the  algorithm.  Illustrate  the  improvisation  of  the 
+running time of the algorithm. 
+ 
+CO2 (08) 
+ b) What  is  the  algorithm  strategy  used  by  the  merge sort  algorithm?  Write 
+the merge sort algorithm and show its working principle. 
+CO2 (08) 
+ c) For the given Input: arr[] = {8, 4, 2, 1}, give the Inversion count in Array 
+using Merge Sort. 
+CO2 (04) 
+     
+  UNIT – III   
+5. a) Design an Optimal caching algorithm to prove  SFF incurs no more misses 
+than any other schedule S∗ and hence is optimal. Illustrate the optimizing 
+cache misses with the following values. a, b, c, d, a, d, e, a, d, b, c , k=3. 
+CO3 (08) 
+ b) 
+ 
+Apply the Greedy Interval Scheduling algorithm with Smallest Finish Time 
+over the intervals given above in order.  
+CO3 (06) 
+ c) Consider  the  string  ABRACADABRA.  Construct  the  Huffman  tree  and 
+generate the codes for the given string. 
+CO3 (06) 
+     
+
+CS42(OO) 
+Page 3 of 4 
+ 
+     
+6. a) 
+ 
+For  the  given  graph,  design  a  single-source  shortest-paths  algorithm  to 
+find  the  shortest  path.  Show  the  step-by-step  execution  of  Dijkstra’s 
+algorithm using a table. 
+CO3 (08) 
+ b) For all indices r ≤ k we have f(i
+r
+) ≤ f(j
+r
+)prove this statement by induction 
+by analyzing the greedy algorithm. 
+CO3 (06) 
+ c) Define  Spanning  tree  and  Minimum Spanning Tree.  For  the  given  graph 
+construct the possible MST. 
+ 
+CO3 (06) 
+     
+  UNIT – IV   
+7. a) Given a small instance  of simple Airline Scheduling Problem below prove 
+that there is a way to perform all flights using at most k planes if and only 
+if there is a feasible circulation in the network G. 
+ 
+CO4 (08) 
+ b) Prove that the graph  G’  with 0 demand, and the capacities and lower 
+bounds  given,  has  a  feasible  circulation  if  and only  if  there  is a  feasible 
+way to design the survey. 
+CO4 (06) 
+ c) Given  a  flow  network,  write  an  algorithm  to  find  a  flow  of  the  maximum 
+possible value. 
+CO4 (06) 
+     
+     
+
+CS42(OO) 
+Page 4 of 4 
+ 
+ 
+8. a) Given the array M of the optimal values of the sub-problems, prove that 
+Find_Solution( ) returns an optimal solution in O(n) time. Illustrate the 
+proof with this example. 
+ 
+CO4 (08) 
+ b) 
+ 
+For  the  above-given  detail,  find  the  number  of  objects  that  have  the 
+largest value to fit in the knapsack. 
+CO4 (06) 
+ c) Given a flow network G, and a flow f on G, define the residual graph G
+f 
+of 
+Gwith respect to f. 
+CO4 (06) 
+     
+  UNIT -V   
+9. a) Define Circuit Satisfiability Problem. Using      F=X+YZ prove  
+i)   SAT≤ρ 3CNF SAT   ii)  3CNF≤ρ SAT    iii) 3CNF ε NPC. 
+CO5 (08) 
+ b) Given  a  new  problem  X, give  the  general  strategy  for  proving  it  is  NP 
+complete. 
+CO5 (06) 
+ c) For  the  given  input:  graph[][]  =  {{0,  1,  1,  0,  0,  1},  {1,  0,  1,  0,  1,  1},    
+{1,  1,  0,  1,  0,  0},  {0,  0,  1,  0,  1,  0},  {0,  1,  0,  1,  0,  1},  {1,  1,  0,  0,  1, 
+0}}, construct a graph and print all the possible Hamilton cycles. 
+CO5 (06) 
+     
+10. a) Given a graph G and a number k, does G contain an independent set of 
+size at least k? 
+ 
+CO5 (08) 
+ b) List the problems that can be solved using algorithms in polynomial time 
+and nonpolynomial time. Comment on its time complexity. 
+CO5 (08) 
+ c) Suppose Y ≤P X. Prove that, If X can be solved in polynomial time, then Y 
+can be solved in polynomial time. 
+CO5 (04) 
+ 
+******************************** 
+
+1. 
+2. 
+3. 
+Program 
+Course Name 
+Course Code 
+a) 
+RAMAIAH 
+Institute of Technology 
+BACKLOG SUBJECT EXAMINATIONS -FEBRUARY 2024 
+B.E. - Artificial intelligence and Data 
+: Science| Arificial Intelligence and 
+Machine Learning 
+Instructions to the Candidates: 
+a 
+b) 
+C) 
+a) 
+Answer one full question from each unit. 
+Men's preference list 
+: Design and Analysis of Algorithms 
+: AD43 / A143 
+for each. 
+WH 
+X 
+H 
+H 
+K 
+Compute the stable matching set S for the following set of men and CO1 (08) 
+women using Gale-Shapley algorithm. 
+K 
+ii. Prove the following. 
+USN 
+UNIT -I 
+AD43IAI43 
+i) T(n)= 4n²+3n+2 is O(n²) 
+ii) T(n)= 4n²+3n+2 is A (n) 
+(Autonomous Institute, Affiliated to VTU) 
+(Approved by AICTE, New Delhi & Govt. of Karnataka) 
+Accredited by NBA & NAAC With 'A+ Grade 
+1 M S 
+K W X 
+b) Explain any three asymptotic properties of algorithms with an example CO1 (06) 
+Women's preference list 
+HX 
+W 
+W X 
+W X 
+Y 
+UNIT -II 
+Semester 
+Describe an algorithm to compute the distance between two points in a CO1 (06) 
+plane and deduce the time complexity for the same. 
+i. Compare between perfect matching and stable matching? Consider 
+an execution of the G-S algorithm that returns a set of pairs S  for 
+the given set of men M and women W. Prove that "The set S is a 
+stable matching". 
+Max. Marks : 100 
+Duration :3 Hrs 
+IV 
+CO1 (08) 
+Define 'Big o, Omega and theta' asymptotic notations for algorithms with CO1 (06) 
+an example. 
+8 
+Write an algorithm for selection sort and show that its time complexity is CO1 (06) 
+quadratic. 
+Describe an algorithm to determine whether a given graph is bipartite or CO2 
+not. Using the same algorithm determine whether the given graph is 
+bipartite or not. 
+Page 1 of 3 
+(08) 
+
+4. 
+5. 
+6 
+b) 
+c) 
+a) 
+b) 
+c) 
+a) 
+a) 
+Write the 
+BFS 
+traversal for 
+the 
+following 
+graph. 
+b) 
+c) 
+Prove that the time complexity of merge sort is O(n log n) using co2 (06) 
+"unrolling method". 
+Write an algorithm for topological ordering. Analyze its time efficiency. CO2 (08) 
+Identify the number of inversions for the array {1,5,4,8,10,2,6,9,12,11} co2 (06) 
+using divide and conquer method. 
+Describe an algorithm to construct DFS traversal for a given graph CO2 (06) 
+G=(V,E). 
+2 
+Find the shortest path from source node 1 to all other nodes for the 
+following graph using Dijkstra's algorithm. 
+Intervals 
+A 
+B 
+b) Identify the minimum spanning tree for a  given graph G=(V,E) using cO3 (05) 
+Prims algorithm. 
+C 
+c) Define fixed-length encoding, variable-length encoding with an example. CO3 (05) 
+D 
+2 
+E 
+UNIT -III 
+F 
+Identify the optimal set of intervals that can be scheduled for the co3 (08) 
+following set on intervals using greedy interval scheduling algorithm. 
+3 
+1 
+1 
+2 
+Start time 
+4 
+1 
+1 
+4 
+2 
+13 
+1 
+3 
+5 
+AD43IAI43 
+Finish time 
+4 
+6 
+Explain the concept of greedy technique for Prims algorithm. 
+2 
+CO2 (06) 
+7 
+11 
+13 
+16 
+Identify minimum spanning tree for the following graph using Prim's CO3 
+algorithm with source node as 1. 
+CO3 (10) 
+CO3 
+Page 2 of 3 
+(06) 
+(06) 
+
+7. 
+8 
+9. 
+10. 
+a) 
+b) 
+c) 
+a) 
+b) 
+c) 
+a) 
+b) 
+a) 
+b) 
+ldentify the set of optimal set of intervals with maximum value for the CO4 (06) 
+given 
+set 
+of 
+intervals 
+and 
+weights 
+Job 
+Details 
+(Start 
+Time, 
+Finish 
+Time, 
+Profit} 
+Job 
+1: 
+{10, 
+13, 
+5} 
+Job 
+2: 
+{13, 
+15, 
+2} 
+Job 3: 
+Job 4: 
+Job 5: 
+{16, 15, 10} 
+{15, 20, 20} 
+{16, 20, 10} 
+Job 6: {21, 30, 10} 
+UNIT -  IV 
+Compare the approaches 'Dynamic programming' and 'Greedy' for 
+problem solving. 
+ldentify the shortest path from the source vertex a using Bellman ford 
+algorithm. 
+Find the optimal subset that can be achieved for the following items with 
+maximum capacity W=6. 
+Item 
+Item 
+3 
+4 
+1 
+2 
+3 
+Describe an iterative procedure to find the optimal weight for a given set 
+of n intervals with their weights 'w'. 
+4 
+Weight 
+7 
+2 
+5 
+3 
+Weight Value 
+3 
+4 
+AD43/AI43 
+Identify the maximum value possible by considering the following Co4 (08) 
+instance and knapsack capacity W=10. 
+UNIT-V 
+40 
+42 
+20 
+12 
+co4 (06) 
+C04 
+CO4 
+CO4 
+Describe Travelling salesman problem. Prove that travelling salesman cO5 
+problem is NP-Complete. 
+Compare Independent set and Vertex cover problems with an example. CO5 
+Are they both polynomial time reducible? Justify. 
+Give an example of an NP complete problem. Explain the strategy used CO5 
+for solving NP complete problem. 
+Suppose you could reduce an NP complete problem to a  polynomial time CO5 
+problem in polynomial time. Develop a solution for the consequence? 
+(08) 
+Page 3 of 3 
+(06) 
+(06) 
+(10) 
+(10) 
+(10) 
+(10) 
+
+AI43/AD43 
+Page 1 of 3 
+ 
+ 
+ 
+ (Autonomous Institute, Affiliated to VTU) 
+(Approved by AICTE, New Delhi & Govt. of Karnataka)  
+Accredited by NBA & NAAC with ‘A+’ Grade 
+ 
+SEMESTER END EXAMINATIONS – AUGUST / SEPTEMBER 2023 
+Program : 
+B.E. -  Artificial Intelligence and 
+Machine Learning  /  Artificial 
+Intelligence and Data Science 
+Semester : 
+IV 
+Course Name : 
+Design and Analysis of Algorithms 
+Max. Marks : 100 
+Course Code : 
+AI43 / AD43 
+Duration : 3 Hrs 
+ 
+Instructions to the Candidates: 
+ Answer one full question from each unit. 
+ 
+ 
+  UNIT - I   
+1. a) Define the asymptotic bounds for algorithms with an example. CO1 (06) 
+ b) Prove the following with respect to Stable Matching Algorithm:- 
+i. If  m  is  free  at  some  point  in  the  execution  of  the  algorithm,  then 
+there is a woman to whom he has not yet proposed. 
+ii. The set S returned at termination is a perfect matching. 
+CO1 (07) 
+ c) Given  the  following  asymptotic  functions  prove  that  it  belongs  to     
+O(n
+2
+), O(n
+3
+) 
+f(n)=6n
+2
++2n+2 
+f(n)=10n
+2
++6n+3 
+CO1 (07) 
+     
+2. a) Define the following with respect to Gale-Shapley algorithm:- 
+i. Perfect Matching 
+ii. Stable Matching 
+iii. Instability 
+iv. Best Valid Partner. 
+CO1 (04) 
+ b) Illustrate Competitive facility problem with an example. CO1 (06) 
+ c) Identify  the  stable  matching  set  S  for  the  following  set  of  men  and 
+women using Gale-Shapley algorithm. 
+Men’s preference list 
+A K L M N O P Q R 
+B L M N P O Q K R 
+C M K L N P O R Q 
+D R Q P O N M L M 
+E L N M Q R K O P 
+F P Q R K L M N O 
+G O P Q R K L N M 
+H M N P O R S K L 
+ 
+Women’s preference list 
+K A B C D E F G H 
+L B C D E A G H F 
+M C D E A B F H G 
+N D A B C E G H F 
+O E B A C E F G H 
+P F G H A B C E D 
+Q B C D E A F G H 
+R E F G H B A C B 
+ 
+ 
+  
+ 
+CO1 (10) 
+USN 1 M S        
+ 
+
+AI43/AD43 
+Page 2 of 3 
+ 
+     
+  UNIT - II   
+3. a) Identify the number of inversions for the array {9,10,3,4,8,2,15,3,2,1} 
+using divide and conquer method. 
+CO2 (10) 
+ b) Identify  the  BFS  traversal  for  a  graph  represented  with  an  adjacency 
+matrix as follows: 
+ 
+CO2 (10) 
+     
+4. a) Write  the BFS  algorithm.  Discuss  its  application  in  graph  coloring 
+problem. 
+CO2 (06) 
+ b) Construct    the    DFS    Traversal    tree    for    the    following    graph 
+with "A" as the source vertex and Write the algorithm for the same. 
+ 
+CO2 (08) 
+ c) Analyze the running time of Merge-Sort using  
+i) Unrolling method ii) Substituting a solution. 
+CO2 (06) 
+     
+  UNIT - III   
+5. a) Prove  that  the  greedy  algorithm  for  the  interval  scheduling  problem 
+returns an optimal set of requests. 
+CO3 (06) 
+ b) Identify the shortest path from source node 1 to all other nodes for the 
+following graph using Dijkstra’s algorithm. 
+ 
+CO3 (08) 
+ c) Construct a Huffman tree for the following data: 
+Char A B C D E 
+Probability 0.4 0.1 0.2 0.15 0.15 
+i) Encode the text A B A C A B A D using generated code. 
+ii) Decode the text whose encoding is 10001011100101. 
+CO3 (06) 
+     
+     
+
+AI43/AD43 
+Page 3 of 3 
+ 
+ 
+6. a) Given the page frame=3 and page request 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 
+identify the number of cache miss using optimal cache miss algorithm. 
+CO3 (08) 
+ b) Construct  the  minimum  spanning  tree  for  the  following  graph  using 
+Prim’s algorithm. 
+ 
+CO3 (08) 
+ c) Compare between greedy and divide and conquer techniques. CO3 (04) 
+     
+  UNIT- IV   
+7. a) Describe  an  algorithm  to  determine  the  shortest  path for  a  graph  with 
+negative edges. 
+CO4 (06) 
+ b) Describe  an  algorithm  to  determine  the  shortest  path  for  a  graph 
+G=(V,E) with negative edge weights. 
+CO4 (06) 
+ c) Identify  the  maximum  subset-sum  that  can  be  achieved  for  the 
+following items with maximum capacity W=6. 
+Item Weight (W) 
+1 2 
+2 3 
+3 4 
+ 
+CO4 (08) 
+     
+8. a) Describe  survey-design  problem  for  a  given  set  of  customers  and 
+products with an algorithm. 
+CO4 (06) 
+ b) Asses   bellman   ford   algorithm   to   find   the distance from   source       
+ vertex ‘a’ to destination vertex ‘t’ in a weighted digraph. 
+ 
+CO4 (08) 
+ c) Identify  the  maximum  profit  and  items  in  the  knapsack  for  W=10, 
+(w1,w2,w3,w4)=(4,7,5,3) and (p1,p2,p3,p4)=(40,42,25,12). 
+CO4 (06) 
+     
+  UNIT - V   
+9. a) Summarize  Travelling  salesman  problem  and  construct  a  proof  for  its 
+NP-completeness. 
+CO5 (06) 
+ b) Describe  the  general  strategy  used  for  proving  NP-complete  problems 
+with an example of Independent set. 
+CO5 (08) 
+ c) Define  NP  complete  problems  and  construct  a  proof  for  “Is  there  a 
+problem in NP that does not belong to P? Does P = NP?” 
+CO5 (06) 
+     
+10. a) Explain Polynomial time reduction with an example. CO5 (10) 
+ b) Suppose you could reduce an NP complete problem to a polynomial time 
+problem in polynomial time. Develop a solution for  the consequence? 
+CO5 (10) 
+     
+******************************** 
+
+22/23CY43/22/23CI43 
+Page 1 of 3 
+ 
+ 
+ 
+ (Autonomous Institute, Affiliated to VTU) 
+(Approved by AICTE, New Delhi & Govt. of Karnataka)  
+Accredited by NBA & NAAC with ‘A+’ Grade 
+ 
+SEMESTER END / BACKLOG SUBJECT EXAMINATIONS – JULY / AUGUST 2025 
+Program : 
+B.E. – CSE (Cyber Security) / CSE (Artificial 
+Intelligence and Machine Learning) 
+Semester : 
+IV 
+Course Name : 
+Design and Analysis of Algorithms  
+Max. Marks : 100 
+Course Code : 
+22 / 23CY43 / 22 / 23CY43 
+Duration : 3 Hrs 
+ 
+Instructions to the Candidates: 
+• Answer one full question from each unit. 
+ 
+  UNIT - I   
+1. a) Discuss the asymptotic bounds for algorithms with an example. CO1 (07) 
+ b) Apply Linear Search algorithm to search the list 
+10,92,38,74,56,19,82,37   for   a   key   value   74.   Calculate   the   time 
+complexity in Best Case and Worst case inputs for the algorithm. 
+CO1 (07) 
+ c) Examine the time complexity of the following: 
+i) int fun(int n) 
+{ 
+  int count = 0; 
+  for (int i = 0; i < n; i++) 
+     for (int j = i; j > 0; j--) 
+        count = count + 1; 
+  return count; 
+}  
+ 
+ii) void fun(int n, int arr[]) 
+{ 
+    int i = 0, j = 0; 
+    for(; i < n; ++i) 
+        while(j < n && arr[i] < arr[j]) 
+            j++; 
+              } 
+CO1 (06) 
+     
+2. a) Illustrate the following with respect to Gale-Shapley algorithm 
+i. Perfect Matching 
+ii. Stable Matching 
+iii. Man Optimal 
+iv. Woman Optimal. 
+CO1 (08) 
+ b) Consider the scenario given. 
+There  are  n  people  numbered  from  1  to  n  in  a  circle.  Starting  from 
+person 1, we eliminate every second person until only survivor is left. 
+• Design an efficient algorithm to find the survivor’s number J(n). 
+• Calculate the time complexity class for the algorithm you defined. 
+CO1 (06) 
+ c) Solve the following recurrence relations using substitution method 
+i. x(n)=x(n-1)+5 for n>1,x(1)=0 
+ii. x(n)=3x(n-1) for n>1, x(1)=4 
+CO1 (06) 
+     
+  UNIT - II   
+3. a) Design  and  Implement  a  Merge  Sort  algorithm  to  sort  a  given  set  of 
+elements    list  =  {  5,  8,  2,  7,  4,  1,  6,  3  }  and  determine  the  time 
+required to  sort the  elements. Prove that the time complexity of merge 
+sort is O (n log n) using “Masters theorem” and deduce the recurrence 
+relation for the same. 
+CO2 (08) 
+     
+USN 1 M S        
+ 
+
+22/23CY43/22/23CI43 
+Page 2 of 3 
+ 
+ 
+ b) Examine the BFS traversal for a graph given in Fig. 3(b) considering the 
+start vertex as ‘A’. 
+ 
+Fig. 3(b) Graph 
+CO2 (06) 
+ c) Describe  an  algorithm  for  Topological  sorting  using  Directed  Acyclic 
+Graph approach. 
+CO2 (06) 
+     
+4. a) Design  and  Implement  Quick  sort  algorithm  to  sort  a given  list  of 
+unsorted  elements  in  ascending  order  and  determine  the  time  required 
+to  sort  the  elements.  Calculate  the  Time  complexity  for  the  algorithm.  
+List = { 10, 20, 30, 40, 50, 60, 70 }. 
+CO2 (06) 
+ b) Construct the DFS Traversal tree for the graph given in Fig. 4(b) Graph 
+with "A" as the source vertex using Stack and Write the algorithm for the 
+same. 
+ 
+Fig. 4(b) Graph 
+CO2 (08) 
+ c) Write  the  Recurrence  Relation  for  Merge-Sort  Algorithm.    Analyze  the 
+running time of Merge-Sort for both best and worst case. 
+CO2 (06) 
+     
+  UNIT - III   
+5. a) Write  the  heap  sort  algorithm.  Sort  32,  84,  62,  33,  94,  80,  24  using 
+heapsort. 
+CO3 (10) 
+ b) Illustrate  the  greedy  technique  with  appropriate  examples.  Write  the 
+pseudocode of Kruskal algorithm. 
+CO3 (10) 
+     
+ 
+6. 
+ 
+a) 
+Apply prim’s and Kruskal’s algorithm to find the minimum spanning tree 
+(MST) of the following graph: 
+ 
+ 
+CO3 
+ 
+(10) 
+ b) 
+Write the stepwise algorithm for constructing Huffman trees. Construct 
+Huffman Tree for the following data. Also encode the text “DAD” and 
+decode the codeword “10011011011101”. 
+ 
+CO3 (10) 
+
+22/23CY43/22/23CI43 
+Page 3 of 3 
+ 
+     
+  UNIT- IV   
+7. a) Find  the  shortest  path  from  node  1  to  every  other  node  in  the  graph 
+given in Fig. 7(a) using Bellman-Ford algorithm. 
+ 
+Fig. 7(a) Graph 
+CO4 (08) 
+ b) Explain the steps for solving Dynamic programming problems. CO4 (06) 
+ c) Discuss the weighted interval scheduling problem with an example. CO4 (06) 
+     
+8. a) Describe the working of Maximum flow problem with an example. CO4 (08) 
+ b) Solve the Knapsack instance with the given input data by identifying the 
+items  to  be  placed  in  the  knapsack  with  capacity  W=10  and  write  an 
+algorithm for the same:  
+ 
+CO4 (06) 
+ c) Explain the general principles of Dynamic Programming. CO4 (06) 
+     
+  UNIT - V   
+9. a) Explain the following with appropriate examples: 
+i) Polynomial Time Reductions 
+ii) NP-Complete Circuit Satisfiability 
+CO5 (10) 
+ b) Summarize the following concepts: 
+i) A First NP-Complete Problem 
+ii) General Strategy for Proving New Problems NP-Complete 
+CO5 (10) 
+     
+10. a) Outline the following with suitable examples: 
+i) Sequencing Problems 
+ii) The Travelling Salesman Problem 
+CO5 (10) 
+ b) Explain the Hamiltonian Cycle Problem with appropriate examples. CO5 (10) 
+ 
+******************************** 
+
+CY43/CI43 
+Page 2 of 3 
+ 
+ 
+ 
+ (Autonomous Institute, Affiliated to VTU) 
+(Approved by AICTE, New Delhi & Govt. of Karnataka)  
+Accredited by NBA & NAAC with ‘A+’ Grade 
+ 
+SEMESTER END EXAMINATIONS – AUGUST 2024 
+Program : 
+B.E. –  CSE (Cyber Security)  /                          
+CSE (Artificial Intelligence and Machine 
+Learning) 
+Semester : 
+IV 
+Course Name : 
+Design and Analysis of Algorithms 
+Max. Marks : 100 
+Course Code : 
+CY43 / CI43 
+Duration : 3 Hrs 
+ 
+Instructions to the Candidates: 
+ Answer one full question from each unit. 
+ 
+ 
+  UNIT - I   
+1. a) Alternating  disks You  have  a  row  of  2n disks  of  two  colors, n dark  and n 
+light. They alternate: dark, light, dark, light, and so on. You want to get all 
+the dark disks to the right-hand end, and all the light disks to the left-hand 
+end.  The  only  moves  you  are  allowed  to  make  are  those  that  interchange 
+the positions of two neighbouring disks. 
+ 
+Design  an  algorithm  for  solving  this  puzzle  and  determine  the  number  of 
+moves it takes. 
+CO1 (06) 
+ b) Solve the following: 
+i. Consider the following f(n) and g(n) 
+f(n) = 3n + 5 
+g(n) = n 
+          Prove that f(n) Є O(n). Compute c and n0. 
+ii. Consider the following f(n) and g(n) 
+f(n) = 2n
+2 
++ 24n+188 
+g(n) = n
+2
+ 
+Prove that f(n) Є O(n
+2
+). Compute c and n0. 
+CO1 (08) 
+ 
+ 
+c) 
+ 
+For the algorithm given,  
+i. Set up a recurrence relation for the number of times the algorithm’s 
+basic operation is executed.  
+ii. Solve the recurrence relation using substitution method. 
+ 
+CO1 
+ 
+(06) 
+     
+2. a) Define the asymptotic bounds for algorithms with an example. Explain two 
+kinds of analyzing the efficiency of an algorithm. 
+CO1 (06) 
+ b) Given  the  following  asymptotic functions  prove  that  it  belongs  to  O(n
+2
+), 
+O(n
+3
+) 
+f(n)=3n
+2
++2n+2 
+f(n)=8n
+3
++6n+3 
+CO1 (06) 
+ c) Given  a  set  of  preferences  among  hospitals  and  med-school  students. 
+Input. A set of n hospitals H and a set of n students S. 
+ 
+CO3 (08) 
+USN 1 M S        
+ 
+
+CY43/CI43 
+Page 2 of 3 
+ 
+ 
+ 
+Obtain the following: 
+i. Perfect Matching  ii. Stable Matching  iii. Hospital Optimal. 
+     
+  UNIT - II   
+3. a) Apply  merge  sort  algorithm  to  the  following  elements  {20,  10,  5,  15,  25, 
+30, 50, 35} using divide and conquer method.     
+CO2 (08) 
+ b) Explain how BFS can be used to check connectness of a graph and also to 
+find the number of components in a graph.   
+CO2 (08) 
+ c) Distinguish between BFS and DFS. CO2 (04) 
+     
+4. a) Discuss  how  Quicksort  works  to  sort  the  list    {M,E,R,G,E,S,O,R,T}  in 
+alphabetical  order.  Also  derive  its  best,  worst  and  average  case  time 
+complexity. 
+CO2 (07) 
+ b) Apply the DFS-based algorithm to solve the topological sorting problem for 
+the following digraph, considering source vertex as “a”. 
+ 
+CO2 (07) 
+ c) Write the recurrence relation for merge-sort algorithm, Analyze the running 
+time of merge-sort using Masters theorem. 
+CO2 (06) 
+     
+  UNIT - III   
+5. a) Construct a heap for the list 1, 8, 6, 5, 3, 7, 4 by the bottom-up algorithm. 
+Specify  the  property  of  building  Max  Heap. Maximum  Key  Deletion from  a 
+heap. 
+CO3 (06) 
+ b) Compute  the  shortest  path  from  source  node  to  all  other  nodes  for  the 
+following  graph using  Dijkstra’s  algorithm.  Describe  the  algorithm  by 
+demonstrating them relaxation procedure. 
+CO2 (07) 
+ c) Consider  the  Knapsack  instance  n=7,  m=15,  and  (P1,  P2,....  P7)                 
+= (10,5,15,7,6,18,3) and (W1, W2,...W7)= (2,3,5,7,1,4,1). Find an optimal 
+solution   to the   Fractional   knapsack   problem   making   use   of   greedy 
+approach. 
+CO4 (07) 
+     
+6. a) Apply Kruskal’s algorithm to the graph given in Fig 6(a).  Include  in  the 
+priority queue all the vertices not already in the tree. 
+ 
+Fig. 6(a) Graph 
+CO4 (07) 
+
+CY43/CI43 
+Page 2 of 3 
+ 
+     
+ b) Construct a Huffman code for the data given in Table 6b. 
+Table 6b: Data Table 
+ 
+i. Construct  a  Huffman  Tree  and  compute  the  codeword  for  all  the 
+characters. 
+ii. Encode “adadcabcdaefabcde” using the codeword computed. 
+CO4 (07) 
+ c) Solve the following instances of the single-source shortest-paths problem 
+with vertex a as the source, for the graph given in Fig 6(c). 
+ 
+Fig. 6(c) Graph 
+CO4 (06) 
+     
+  UNIT- IV   
+7. a) For the  set  of items given in Table 7a and knapsack  capacity =  5 kg, find 
+the optimal solution for the 0/1  knapsack problem  making use of dynamic 
+programming approach. 
+Table 7a: Items and values 
+ 
+CO4 (08) 
+ b) Solve  the  all-pairs  shortest-path problem using Floyd’s algorithm for the 
+digraph with the weight matrix given in Fig 7(b). 
+ 
+Fig. 7(b) Weight Matrix 
+CO4 (06) 
+ c) Describe  the  memorization  Approach  used  in  Dynamic  Programming  by 
+illustrating the recursive Fibonacci function. Construct the control stack and 
+illustrate the process of Memorization table. 
+int fibonacci(int n) { 
+   if(n == 0) 
+      return 0; 
+   else if(n == 1) 
+      return 1; 
+   else 
+      return (fibonacci(n-1) + fibonacci(n-2)); 
+} 
+CO4 (06) 
+
+CY43/CI43 
+Page 2 of 3 
+ 
+     
+8. a) Differentiate  between  Dynamic  Programming  and  Divide  and  conquer 
+techniques.  
+CO4 (06) 
+ b) Apply the shortest-augmenting path algorithm to find a maximum flow and 
+a  minimum  cut  in  the  network  given  in  Fig. 8(b).  Compute  the  Maximum 
+Flow. 
+ 
+Fig 8(b) Flow Network 
+CO4 (07) 
+ c) Identify and compute the optimal set of intervals with maximum  value for 
+the set of intervals and weights given in Table 8c. 
+Table 8c Weighted Interval 
+Interval Start time Finish time Weight 
+1 1 6 10 
+2 2 4 3 
+3 5 9 4 
+4 7 14 20 
+5 11 18 2 
+ 
+CO4 (07) 
+     
+  UNIT - V   
+9. a) Explain the approximation algorithms for NP-hard problems. CO5 (07) 
+ b) Apply  the  branch-and-bound  algorithm  to  solve  the  traveling  salesman 
+problem for the graph given in Fig. 9(b) considering ‘a’ source vertex:    
+ 
+Fig. 9(b) 
+CO5 (07) 
+ c) What is the central principle of backtracking? Taking 4-queens problem  as 
+an example, explain the solution process. 
+CO5 (06) 
+     
+10. a) Explain P, NP and NP-Complete problems.     CO5 (10) 
+ b) Describe Hamiltonian cycle. Find a Hamiltonian cycle in the graph given in 
+Fig. 10(b). 
+ 
+CO5 (10) 
+ 
+******************************** 
