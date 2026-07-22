@@ -93,6 +93,8 @@ The frontend and backend act only as an interface—the actual search engine is 
       │  Snippet Generator          │
       └────────────────────────────┘
 ```
+<img width="480" height="596" alt="image" src="https://github.com/user-attachments/assets/c83f8086-855f-43ae-9d2a-14e6f372e546" />
+
 
 ---
 
